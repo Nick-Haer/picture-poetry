@@ -16,6 +16,6 @@ const PoemSchema = new Schema({
   },
 });
 
-const Poem = mongoose.model(PoemSchema, 'Poem');
+const Poem = mongoose.model('Poem', PoemSchema);
 
 module.exports = Poem;
