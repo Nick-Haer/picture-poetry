@@ -19,4 +19,6 @@ const randomMetPainting = async () => {
   }
 };
 
-testMet();
+// randomMetPainting();
+
+module.exports = randomMetPainting;

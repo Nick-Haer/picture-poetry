@@ -6,6 +6,7 @@ async function dbConnect() {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
+      useUnifiedTopology: true,
     });
     console.log('db connected');
   } catch (error) {

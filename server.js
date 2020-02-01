@@ -21,3 +21,11 @@ dbConnection();
 app.use(routes);
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
+
+//todo
+
+//check throw vs return
+
+//encrypt passwords before sending
+
+//lightly randomize met function

@@ -10,10 +10,20 @@ const PoemSchema = new Schema({
     type: String,
     required: true,
   },
-  writer: {
+  picture: {
+    type: String,
+    required: true,
+  },
+  author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  likes: [
+    {
+      user: { type: Schema.Types.ObjectId, ref: 'User' },
+      date: { type: Date, default: Date.now() },
+    },
+  ],
 });
 
 const Poem = mongoose.model('Poem', PoemSchema);
