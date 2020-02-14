@@ -83,29 +83,59 @@ router.route('/:poemId').get(async (req, res) => {
   }
 });
 
-// Desc: PUT Like a poem
+// Desc: PUT Like or unlike a poem
 // Address: /api/poems/:poemId
 // Access:   Private
 router.route('/:poemId').put(auth, async (req, res) => {
   try {
-    const user = await findById(req.user.id);
-
-    if (!user) {
-      throw 'User not found';
-    }
     const poem = await Poem.findById(req.params.poemId);
 
     if (!poem) {
       throw 'Poem not found';
     }
 
+    if (poem.likes.find(like => like.user.toString() == req.user.id)) {
+      const index = poem.likes.findIndex(
+        like => like.user.toString() == req.user.id
+      );
+      poem.likes.splice(index, 1);
+    } else {
+      poem.likes.unshift(req.user.id);
+    }
+
     console.log(poem);
 
-    // res.status(200).json(poem);
+    await poem.save();
+
+    res.status(200).json('liked');
   } catch (error) {
     console.error(error);
     res.status(400).json(error);
   }
 });
+
+// Desc: PUT Unlike a poem
+// Address: /api/poems/:poemId
+// Access:   Private
+// router.route('/:poemId').put(auth, async (req, res) => {
+//   try {
+//     const poem = await Poem.findById(req.params.poemId);
+
+//     if (!poem) {
+//       throw 'Poem not found';
+//     }
+
+//     poem.likes.unshift(req.user.id);
+
+//     console.log(poem);
+
+//     await poem.save();
+
+//     res.status(200).json('liked');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json(error);
+//   }
+// });
 
 module.exports = router;

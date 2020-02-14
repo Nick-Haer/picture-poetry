@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 dbConnection();
 
@@ -29,3 +29,7 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 //encrypt passwords before sending
 
 //lightly randomize met function
+
+//differentiate between saved and written poems
+
+//screen responsiveness

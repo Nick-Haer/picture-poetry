@@ -115,17 +115,15 @@ router.delete('/', auth, async (req, res) => {
     res.status(400).json(error);
   }
 });
-//in progress
+
 // Desc: GET Gets all saved poems given profile id
 // Address: /api/users/all
 // Access:   Private
 router.route('/all').get(async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
 
-    if (!currentUser) {
-      return res.status(400).json('Sorry, profile not logged in');
-    }
+    const savedPoems = user.poems;
 
     if (!(savedPoems.length > 0)) {
       return res.status(400).json('No saved poems');

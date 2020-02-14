@@ -18,6 +18,10 @@ const PoemSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
   likes: [
     {
       user: { type: Schema.Types.ObjectId, ref: 'User' },

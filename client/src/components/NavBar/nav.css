@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: 3fr 8fr 3fr;
+  background-color: #003153;
+}
+
+#nav-links {
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: whitesmoke;
+  margin: 0 15px;
+  text-decoration: solid;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+#raven-image {
+  width: 200px;
+  transform: scale(-1, 1);
+}
+
+.image-link {
+  justify-content: center;
+  display: flex;
+}
+
+#title-text {
+  font-size: 4rem;
+  align-self: center;
+  text-align: center;
+  font-family: 'Lemonada', cursive;
+  color: whitesmoke;
+}
