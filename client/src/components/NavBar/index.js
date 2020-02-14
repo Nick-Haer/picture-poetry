@@ -7,7 +7,7 @@ import raven from './raven.png';
 const NavBar = props => {
   return (
     <nav className='navbar'>
-      <Link className='image-link' to='/landing'>
+      <Link className='image-link' to='/'>
         <img id='raven-image' src={raven} alt='Raven' />
       </Link>
 
