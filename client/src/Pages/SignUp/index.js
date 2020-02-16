@@ -1,37 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signup } from '../../Actions/auth';
+import { createAlert } from '../../Actions/alert';
 import './signup.css';
 
-const SignUp = props => {
+const SignUp = ({ signup, createAlert }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    password: '',
+    password2: '',
+  });
+
+  const { email, username, password, password2 } = formData;
+
+  const submitHandler = event => {
+    event.preventDefault();
+    if (password !== password2) {
+      createAlert('Passwords do not match', 'warning');
+    } else {
+      signup(email, username, password);
+    }
+  };
+
+  const onChangeHandler = event => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
   return (
-    <section class='signup'>
+    <section className='signup'>
       <div id='signup-box'>
         <h3 className='signup-title'>Sign Up Here</h3>
-        <form>
+        <form onSubmit={e => submitHandler(e)}>
           <input
             className='signup-input'
             name='email'
             placeholder='Email Address'
             type='email'
+            value={email}
+            onChange={onChangeHandler}
           />
           <input
             className='signup-input'
             name='username'
             type='text'
             placeholder='Username'
+            value={username}
+            onChange={onChangeHandler}
           />
           <input
             className='signup-input'
             name='password'
             type='password'
             placeholder='Password'
+            value={password}
+            onChange={onChangeHandler}
           />
           <input
             className='signup-input'
             name='password2'
             type='password'
             placeholder='Confirm Password'
+            value={password2}
+            onChange={onChangeHandler}
           />
           <button className='signup-input signup-btn' type='submit' value=''>
             Submit
@@ -53,4 +86,4 @@ const SignUp = props => {
 
 SignUp.propTypes = {};
 
-export default SignUp;
+export default connect(null, { signup, createAlert })(SignUp);

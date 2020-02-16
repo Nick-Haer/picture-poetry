@@ -6,19 +6,28 @@ import NavBar from './components/NavBar';
 import Landing from './Pages/LandingPage';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
+import Alert from './components/Alert';
+
+//Redux
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <Router>
-      <>
-        <NavBar />
-        <Route exact path='/' component={Landing} />
-        <Switch>
-          <Route exact path='/signup' component={SignUp} />
-          <Route exact path='/login' component={Login} />
-        </Switch>
-      </>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <>
+          <NavBar />
+          <Alert />
+          <Route exact path='/' component={Landing} />
+          <Switch>
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/login' component={Login} />
+          </Switch>
+        </>
+      </Router>
+    </Provider>
   );
 }
 
