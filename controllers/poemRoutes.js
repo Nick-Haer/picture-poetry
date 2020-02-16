@@ -37,7 +37,7 @@ router.route('/').post(auth, async (req, res) => {
 
   const savedPoem = await Poem.create(poem);
 
-  user.poems.unshift(savedPoem);
+  user.myPoems.unshift(savedPoem);
 
   await user.save();
 
@@ -113,6 +113,10 @@ router.route('/:poemId').put(auth, async (req, res) => {
     res.status(400).json(error);
   }
 });
+
+router.get('/savedPoems', auth, async (req, res) => {});
+
+router.get('/myPoems', auth, async (req, res) => {});
 
 // Desc: PUT Unlike a poem
 // Address: /api/poems/:poemId

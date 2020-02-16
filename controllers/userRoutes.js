@@ -18,9 +18,12 @@ router.post(
     check('password').isLength({ min: 5 }),
   ],
   async (req, res) => {
+    console.log(req.body);
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return console.error(errors.array());
+      console.log('validation error');
+      return res.status(400).json({ errors: errors.array() });
     }
 
     let { username, email, password } = req.body;
@@ -31,7 +34,7 @@ router.post(
       if (userFound.length !== 0) {
         return res
           .status(400)
-          .json('An account with that email already exists');
+          .json({ errors: ['An account with that email already exists'] });
       }
       //encrypt password, then create user
       password = await bcrypt.hash(password, 10);
@@ -42,10 +45,10 @@ router.post(
 
       const token = jwt.sign({ user: { id: user.id } }, jwtSecret);
 
-      res.status(200).json({ user, token });
+      res.status(200).json({ token });
     } catch (error) {
       console.error(error);
-      return res.status(400).send('Server error');
+      return res.status(400).json({ errors: 'Server error' });
     }
   }
 );

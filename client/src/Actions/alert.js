@@ -18,5 +18,5 @@ export const createAlert = (message, alertType) => dispatch => {
       type: DELETE_ALERT,
       payload: id,
     });
-  }, 3000);
+  }, 5000);
 };

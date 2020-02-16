@@ -21,7 +21,7 @@ const SignUp = ({ signup, createAlert }) => {
     if (password !== password2) {
       createAlert('Passwords do not match', 'warning');
     } else {
-      signup(email, username, password);
+      signup(username, email, password);
     }
   };
 

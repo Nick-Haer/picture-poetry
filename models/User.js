@@ -17,7 +17,13 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  poems: [
+  myPoems: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Poem',
+    },
+  ],
+  savedPoems: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Poem',
