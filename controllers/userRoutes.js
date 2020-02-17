@@ -59,11 +59,13 @@ router.post(
 
 router.post(
   '/login',
-  [check('username').isAlphanumeric(), check('password').isLength({ min: 5 })],
+  [check('email').isEmail(), check('password').isLength({ min: 5 })],
   async (req, res) => {
     const errors = validationResult(req);
+    console.log(req.body);
     if (!errors.isEmpty()) {
-      return console.error(errors.array());
+      console.log(errors.array());
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { email, password } = req.body;
@@ -71,11 +73,10 @@ router.post(
     try {
       const userFound = await User.find({ email });
 
-      //check if the user exists
       if (!(userFound.length > 0)) {
-        return res
-          .status(400)
-          .json("Sorry, couldn't find an account with that email");
+        return res.status(404).json({
+          errors: ['Incorrect username or password'],
+        });
       }
 
       const user = userFound.pop();
@@ -91,10 +92,12 @@ router.post(
         const token = jwt.sign({ user: { id: user.id } }, jwtSecret);
 
         return res.status(200).json({ token });
+      } else {
+        res.status(404).json({ errors: ['Incorrect username or password'] });
       }
     } catch (error) {
       console.error(error);
-      res.status(200).json('Server error');
+      res.status(400).json({ errors: ['Server error'] });
     }
   }
 );

@@ -7,6 +7,7 @@ import Landing from './Pages/LandingPage';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import Alert from './components/Alert';
+import PrivateRoute from './PrviateRoute/PrivateRoute';
 
 //Redux
 
@@ -24,6 +25,7 @@ function App() {
           <Switch>
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
+            <PrivateRoute exact path='/write' />
           </Switch>
         </>
       </Router>

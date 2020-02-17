@@ -1,11 +1,14 @@
-import { SIGNUP_FAILURE, SIGNUP_SUCCESS } from './types';
+import {
+  SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from './types';
 import axios from 'axios';
 import { createAlert } from './alert';
 
 export const signup = (username, email, password) => async dispatch => {
   const userData = { username, email, password };
-  console.log('data');
-  console.log(userData);
 
   try {
     const res = await axios.post('/api/users', userData);
@@ -14,11 +17,10 @@ export const signup = (username, email, password) => async dispatch => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error.response.data.errors);
     const errors = error.response.data.errors;
+    //check if errors are returned, and if there are any, make an alert out of them. Some are created errors, with a message, while others are just strings sent back as an array to interface with the forEach
     if (errors) {
       errors.forEach(err => {
-        console.log(err);
         dispatch(createAlert(err.msg || err, 'warning'));
       });
 
@@ -29,7 +31,27 @@ export const signup = (username, email, password) => async dispatch => {
   }
 };
 
-export const login = (email, password) => dispatch => {};
+export const login = (email, password) => async dispatch => {
+  try {
+    const res = await axios.post('/api/users/login', { email, password });
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    const errors = error.response.data.errors;
+    // more descriptive errors from validator?
+    if (errors) {
+      errors.forEach(err => {
+        dispatch(createAlert(err.msg || err, 'warning'));
+      });
+
+      dispatch({
+        type: LOGIN_FAILURE,
+      });
+    }
+  }
+};
 
 // function signup() {
 //   function dispatch() {}

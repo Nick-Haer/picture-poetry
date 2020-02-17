@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './login.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../../Actions/auth';
 
-const Login = props => {
+const Login = ({ login }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const onChangeHandler = event => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const onSubmitHandler = event => {
+    event.preventDefault();
+    login(email, password);
+  };
+
   return (
     <section className='login'>
       <div id='login-box'>
         <h3 className='login-title'>Login Here</h3>
-        <form>
+        <form onSubmit={event => onSubmitHandler(event)}>
           <input
             className='login-input'
             name='email'
             placeholder='Email Address'
             type='email'
+            value={email}
+            onChange={event => onChangeHandler(event)}
           />
           <input
             className='login-input'
             name='password'
             type='password'
             placeholder='Password'
+            value={password}
+            onChange={event => onChangeHandler(event)}
           />
           <button className='login-input login-btn' type='submit' value=''>
             Submit
@@ -41,4 +63,4 @@ const Login = props => {
 
 Login.propTypes = {};
 
-export default Login;
+export default connect(null, { login })(Login);

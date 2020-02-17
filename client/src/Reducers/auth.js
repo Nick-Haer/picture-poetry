@@ -1,4 +1,9 @@
-import { SIGNUP_SUCCESS, SIGNUP_FAILURE } from '../Actions/types';
+import {
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+} from '../Actions/types';
 const initialState = {
   isAuthenticated: false,
   loading: true,
@@ -9,6 +14,7 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case SIGNUP_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('jsonwebtoken', payload.token);
       return {
         ...state,
@@ -16,6 +22,7 @@ export default (state = initialState, action) => {
         loading: false,
       };
     case SIGNUP_FAILURE:
+    case LOGIN_FAILURE:
       localStorage.removeItem('jsonwebtoken');
       return {
         ...state,

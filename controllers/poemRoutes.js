@@ -114,7 +114,15 @@ router.route('/:poemId').put(auth, async (req, res) => {
   }
 });
 
-router.get('/savedPoems', auth, async (req, res) => {});
+router.get('/savedPoems', auth, async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    return res
+      .status(400)
+      .json('You need to be logged in to write and post poems');
+  }
+});
 
 router.get('/myPoems', auth, async (req, res) => {});
 
