@@ -22,7 +22,7 @@ const NavBar = ({ isAuthenticated, loading }) => {
 
   const privateLinks = (
     <>
-      <Link className='nav-link' to='/poems'>
+      <Link className='nav-link' to='/poems-search'>
         Poems
       </Link>
       <Link className='nav-link' to='/write-poem'>

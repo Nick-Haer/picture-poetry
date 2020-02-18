@@ -33,3 +33,7 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 //differentiate between saved and written poems
 
 //screen responsiveness
+
+// Future
+
+// Different Theme Each Day

@@ -1,7 +1,7 @@
-const axios = require('axios');
-const randomWords = require('random-words');
+import axios from 'axios';
+import randomWords from 'random-words';
 
-const randomMetPainting = async () => {
+export const randomMetPainting = async () => {
   try {
     const word = randomWords();
     const response = await axios.get(
@@ -21,5 +21,3 @@ const randomMetPainting = async () => {
     console.error(error.messsage);
   }
 };
-
-module.exports = randomMetPainting;

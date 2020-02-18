@@ -10,6 +10,9 @@ import Alert from './components/Alert';
 import PrivateRoute from './PrviateRoute/PrivateRoute';
 import WritePoem from './Pages/WritePoem';
 import setAuthHeaders from './utils/setAuthHeaders';
+import PoemsSearch from './Pages/PoemsSearch';
+import MyPoems from './Pages/MyPoems';
+import SavedPoems from './Pages/SavedPoems';
 
 //Redux
 
@@ -37,6 +40,9 @@ function App() {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/write-poem' component={WritePoem} />
+            <PrivateRoute exact path='/poems-search' component={PoemsSearch} />
+            <PrivateRoute exact path='/my-poems' component={MyPoems} />
+            <PrivateRoute exact path='/saved-poems' component={SavedPoems} />
           </Switch>
         </>
       </Router>
