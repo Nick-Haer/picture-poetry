@@ -3,6 +3,8 @@ import {
   SIGNUP_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  TOKEN_FOUND,
+  NO_TOKEN_FOUND,
 } from './types';
 import axios from 'axios';
 import { createAlert } from './alert';
@@ -53,9 +55,18 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
-// function signup() {
-//   function dispatch() {}
-// }
+export const checkToken = token => dispatch => {
+  if (token) {
+    dispatch({
+      type: TOKEN_FOUND,
+      payload: token,
+    });
+  } else {
+    dispatch({
+      type: NO_TOKEN_FOUND,
+    });
+  }
+};
 
 // Poem Thoughts
 

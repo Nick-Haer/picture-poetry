@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../Actions/auth';
 
-const Login = ({ login }) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +21,10 @@ const Login = ({ login }) => {
     event.preventDefault();
     login(email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='write-poem' />;
+  }
 
   return (
     <section className='login'>
@@ -63,4 +67,8 @@ const Login = ({ login }) => {
 
 Login.propTypes = {};
 
-export default connect(null, { login })(Login);
+const mapStateToProps = state => {
+  return { isAuthenticated: state.auth.isAuthenticated };
+};
+
+export default connect(mapStateToProps, { login })(Login);

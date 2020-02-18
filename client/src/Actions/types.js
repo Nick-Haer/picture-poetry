@@ -4,3 +4,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const CREATE_ALERT = 'CREATE_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
+export const TOKEN_FOUND = 'TOKEN_FOUND';
+export const NO_TOKEN_FOUND = 'NO_TOKEN_FOUND';

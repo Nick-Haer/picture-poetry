@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const index = props => {
+const Write = props => {
   return <div></div>;
 };
 
-index.propTypes = {};
+Write.propTypes = {};
 
-export default index;
+export default connect()(Write);

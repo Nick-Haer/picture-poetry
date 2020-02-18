@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../../Actions/auth';
 import { createAlert } from '../../Actions/alert';
 import './signup.css';
 
-const SignUp = ({ signup, createAlert }) => {
+const SignUp = ({ signup, createAlert, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -28,6 +28,10 @@ const SignUp = ({ signup, createAlert }) => {
   const onChangeHandler = event => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/write-poem' />;
+  }
 
   return (
     <section className='signup'>
@@ -86,4 +90,8 @@ const SignUp = ({ signup, createAlert }) => {
 
 SignUp.propTypes = {};
 
-export default connect(null, { signup, createAlert })(SignUp);
+const mapStateToProps = state => {
+  return { isAuthenticated: state.auth.isAuthenticated };
+};
+
+export default connect(mapStateToProps, { signup, createAlert })(SignUp);
