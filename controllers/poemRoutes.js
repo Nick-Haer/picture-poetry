@@ -7,41 +7,50 @@ const auth = require('../middleware/auth');
 // Address: /api/poems
 // Access:   Private
 router.route('/').post(auth, async (req, res) => {
-  const user = await User.findById(req.user.id);
+  try {
+    const user = await User.findById(req.user.id);
 
-  if (!user) {
-    return res
-      .status(400)
-      .json('You need to be logged in to write and post poems');
+    if (!user) {
+      return res
+        .status(400)
+        .json('You need to be logged in to write and post poems');
+    }
+
+    const { title, text, picture } = req.body;
+
+    console.log(req.body);
+
+    const poem = {};
+
+    if (title) {
+      poem.title = title;
+    }
+    if (text) {
+      poem.text = text;
+    }
+    if (picture) {
+      poem.picture = picture;
+    }
+
+    poem.author = req.user.id;
+
+    console.log(poem);
+
+    const savedPoem = await Poem.create(poem);
+
+    console.log(savedPoem);
+
+    user.myPoems.unshift(savedPoem);
+
+    await user.save();
+
+    res.status(200).json(savedPoem);
+  } catch (error) {
+    console.log(error);
+    if (error) {
+      res.json('Server Error');
+    }
   }
-
-  const { title, text, picture } = req.body;
-
-  console.log(req.body);
-
-  const poem = {};
-
-  if (title) {
-    poem.title = title;
-  }
-  if (text) {
-    poem.text = text;
-  }
-  if (picture) {
-    poem.picture = picture;
-  }
-
-  poem.author = req.user.id;
-
-  console.log(poem);
-
-  const savedPoem = await Poem.create(poem);
-
-  user.myPoems.unshift(savedPoem);
-
-  await user.save();
-
-  res.status(200).json(savedPoem);
 });
 
 // Desc: GET Gets all poems

@@ -57,6 +57,7 @@ export const login = (email, password) => async dispatch => {
 
 export const checkToken = token => dispatch => {
   if (token) {
+    console.log('token found ' + token);
     dispatch({
       type: TOKEN_FOUND,
       payload: token,

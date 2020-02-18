@@ -43,6 +43,11 @@ section {
   display: flex;
 }
 
+.poem-title {
+  margin: 0 auto;
+  display: block;
+}
+
 hr.fancy-line-top {
   height: 30px;
   border-style: solid;
