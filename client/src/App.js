@@ -48,6 +48,7 @@ function App() {
           <Switch>
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/poems' component={PoemsSearch} />
             <PrivateRoute exact path='/write-poem' component={WritePoem} />
             <PrivateRoute exact path='/poems-search' component={PoemsSearch} />
             <PrivateRoute exact path='/my-poems' component={MyPoems} />

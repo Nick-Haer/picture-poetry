@@ -37,3 +37,4 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 // Future
 
 // Different Theme Each Day
+//proxy errors, data leaks, general running

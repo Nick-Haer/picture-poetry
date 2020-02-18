@@ -30,6 +30,8 @@ export default (state = initialState, action) => {
       localStorage.setItem('jsonwebtoken', payload);
       return {
         ...state,
+        isAuthenticated: true,
+        loading: false,
       };
     case SIGNUP_FAILURE:
     case LOGIN_FAILURE:

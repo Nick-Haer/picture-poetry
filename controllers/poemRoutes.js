@@ -63,7 +63,7 @@ router.route('/').get(async (req, res) => {
     if (!(poems.length > 0)) {
       throw 'No poems found!';
     }
-    console.log(poems);
+    // console.log(poems);
 
     res.status(200).json(poems);
   } catch (error) {
@@ -158,5 +158,19 @@ router.get('/myPoems', auth, async (req, res) => {});
 //     res.status(400).json(error);
 //   }
 // });
+
+router.put('/save/:poemId', auth, async (req, res) => {
+  try {
+    console.log('hit');
+    const user = await User.findById(req.user.id);
+    console.log(user.savedPoems);
+    user.savedPoems.unshift(req.params.poemId);
+    await user.save();
+    res.status(200).json('Poem Saved Succesfully');
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Server Error');
+  }
+});
 
 module.exports = router;
