@@ -5,6 +5,7 @@ import './saved-poems.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
+import './saved-poems.css';
 
 const SavedPoem = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({

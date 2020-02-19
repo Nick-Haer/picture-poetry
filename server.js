@@ -44,3 +44,5 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 //proxy errors
 //error/success handling
 //make delete remove poem everywhere
+//reload
+//css

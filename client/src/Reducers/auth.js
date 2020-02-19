@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
       };
     case TOKEN_FOUND:
       console.log(payload);
-      localStorage.setItem('jsonwebtoken', payload);
+      // localStorage.setItem('jsonwebtoken', payload);
       return {
         ...state,
         isAuthenticated: true,

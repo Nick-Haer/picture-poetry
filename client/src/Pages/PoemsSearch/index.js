@@ -16,8 +16,8 @@ const PoemsSearch = ({ createAlert }) => {
   useEffect(() => {
     async function getAllPoems() {
       try {
-        const poemsList = await axios.get('/api/poems');
-
+        const poemsList = await axios.get('/api/poems/');
+        console.log(poemsList);
         setPoemData({ poems: poemsList.data });
       } catch (error) {
         console.error(error);
@@ -25,6 +25,13 @@ const PoemsSearch = ({ createAlert }) => {
     }
     getAllPoems();
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   const savePoem = async (event, index) => {
     try {
@@ -35,7 +42,17 @@ const PoemsSearch = ({ createAlert }) => {
       createAlert('Poem Saved', 'confirm');
     } catch (error) {
       console.error(error);
-      createAlert(error, 'warning');
+      //if the error comes from a lack of jsonwebtoken
+      if (error.response.data) {
+        createAlert(
+          'Please make an account to save write and share poems',
+          'warning'
+        );
+      } else {
+        //any other error
+        createAlert(error, 'warning');
+      }
+      scrollToTop();
     }
   };
   return (

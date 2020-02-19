@@ -5,6 +5,7 @@ import './my-poems.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
+import './my-poems.css';
 const MyPoems = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],

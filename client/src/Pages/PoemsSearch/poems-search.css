@@ -10,7 +10,6 @@ section {
 }
 
 .poem-container {
-  text-transform: capitalize;
   background-color: black;
   width: 60%;
   margin: 0 auto;
@@ -21,12 +20,14 @@ section {
 }
 
 .poem-title {
+  text-transform: capitalize;
   font-size: 2rem;
   font-family: 'Lemonada';
   text-decoration: underline;
 }
 
 .poem-text {
+  border: #003153 1px solid;
   font-size: 1.2rem;
   margin-top: 2%;
   padding-bottom: 50px;
@@ -39,7 +40,7 @@ section {
   bottom: 10px;
 }
 .save-button:hover {
-  cursor: copy;
+  cursor: pointer;
 }
 
 .picture-with-text {

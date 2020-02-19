@@ -72,25 +72,32 @@ router.route('/').get(async (req, res) => {
   }
 });
 
-// Desc: GET Gets one poem by id
-// Address: /api/poems/:poemId
-// Access:   Public
-// router.route('/:poemId').get(async (req, res) => {
-//   try {
-//     const poem = await Poem.findById(req.params.poemId);
+router.get('/checkSaved', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    const poems = await Poem.find();
 
-//     if (!poem) {
-//       throw 'Poem not found';
-//     }
+    let saveCheckedPoems = poems.map(poem => {
+      if (user.savedPoems.includes(poem._id)) {
+        // console.log('true');
+        poem.saved = true;
+        return poem;
+      } else {
+        // console.log('false');
+        poem.saved = false;
+        return poem;
+      }
+      // console.log(poem);
+    });
 
-//     console.log(poem);
+    console.log(saveCheckedPoems);
 
-//     res.status(200).json(poem);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json('Server error');
-//   }
-// });
+    res.status(200).json(poems);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error);
+  }
+});
 
 // Desc: PUT Like or unlike a poem
 // Address: /api/poems/:poemId
@@ -123,42 +130,6 @@ router.route('/:poemId').put(auth, async (req, res) => {
   }
 });
 
-// router.get('/savedPoems', auth, async (req, res) => {
-//   const user = await User.findById(req.user.id);
-
-//   if (!user) {
-//     return res
-//       .status(400)
-//       .json('You need to be logged in to write and post poems');
-//   }
-// });
-
-router.get('/myPoems', auth, async (req, res) => {});
-
-// Desc: PUT Unlike a poem
-// Address: /api/poems/:poemId
-// Access:   Private
-// router.route('/:poemId').put(auth, async (req, res) => {
-//   try {
-//     const poem = await Poem.findById(req.params.poemId);
-
-//     if (!poem) {
-//       throw 'Poem not found';
-//     }
-
-//     poem.likes.unshift(req.user.id);
-
-//     console.log(poem);
-
-//     await poem.save();
-
-//     res.status(200).json('liked');
-//   } catch (error) {
-//     console.error(error);
-//     res.status(400).json(error);
-//   }
-// });
-
 // Desc: PUT Save a poem by id
 // Address: /api/poems/save/:poemId
 // Access:   Private
@@ -166,6 +137,11 @@ router.put('/save/:poemId', auth, async (req, res) => {
   try {
     console.log('hit');
     const user = await User.findById(req.user.id);
+    if (!user) {
+      res
+        .status(404)
+        .json('Please make an account to save, write, and share poems');
+    }
     console.log(user.savedPoems);
     user.savedPoems.unshift(req.params.poemId);
     await user.save();
@@ -218,7 +194,11 @@ router.delete('/deleteOnePoem/:poemId', auth, async (req, res) => {
 
     console.log(poemIndex);
 
-    user.myPoems.splice(poemIndex, 1);
+    const deletedPoem = user.myPoems.splice(poemIndex, 1);
+
+    console.log(deletedPoem._id);
+
+    await Poem.findByIdAndRemove(deletedPoem[0]._id);
 
     await user.save();
 
@@ -256,3 +236,59 @@ router.delete('/unSavePoem/:poemId', auth, async (req, res) => {
 });
 
 module.exports = router;
+
+// router.get('/myPoems', auth, async (req, res) => {});
+
+// Desc: PUT Unlike a poem
+// Address: /api/poems/:poemId
+// Access:   Private
+// router.route('/:poemId').put(auth, async (req, res) => {
+//   try {
+//     const poem = await Poem.findById(req.params.poemId);
+
+//     if (!poem) {
+//       throw 'Poem not found';
+//     }
+
+//     poem.likes.unshift(req.user.id);
+
+//     console.log(poem);
+
+//     await poem.save();
+
+//     res.status(200).json('liked');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json(error);
+//   }
+// });
+
+// router.get('/savedPoems', auth, async (req, res) => {
+//   const user = await User.findById(req.user.id);
+
+//   if (!user) {
+//     return res
+//       .status(400)
+//       .json('You need to be logged in to write and post poems');
+//   }
+// });
+
+// Desc: GET Gets one poem by id
+// Address: /api/poems/:poemId
+// Access:   Public
+// router.route('/:poemId').get(async (req, res) => {
+//   try {
+//     const poem = await Poem.findById(req.params.poemId);
+
+//     if (!poem) {
+//       throw 'Poem not found';
+//     }
+
+//     console.log(poem);
+
+//     res.status(200).json(poem);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json('Server error');
+//   }
+// });

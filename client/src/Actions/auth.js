@@ -16,6 +16,8 @@ export const signup = (username, email, password) => async dispatch => {
 
   try {
     const res = await axios.post('/api/users', userData);
+    setAuthHeaders(res.data.token);
+
     dispatch({
       type: SIGNUP_SUCCESS,
       payload: res.data,
@@ -38,6 +40,7 @@ export const signup = (username, email, password) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   try {
     const res = await axios.post('/api/users/login', { email, password });
+    setAuthHeaders(res.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
