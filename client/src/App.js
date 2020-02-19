@@ -20,24 +20,18 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { checkToken } from './Actions/auth';
 
+if (localStorage.jsonwebtoken && localStorage.jsonwebtoken !== 'undefined') {
+  setAuthHeaders(localStorage.jsonwebtoken);
+} else {
+  console.log('did not set auth headers');
+}
+
 function App() {
   //this isn't running
 
-  if (localStorage.jsonwebtoken && localStorage.jsonwebtoken !== 'undefined') {
-    console.log('setting auth headers');
-    console.log(localStorage);
-    console.log(localStorage.jsonwebtoken);
-    console.log('token found in app');
-    setAuthHeaders(localStorage.jsonwebtoken);
-  } else {
-    console.log('did not set auth headers');
-  }
-
   useEffect(() => {
-    console.log('checked token');
-    console.log(localStorage.jsonwebtoken);
-    store.dispatch(checkToken(localStorage.jsonwebtoken));
-  });
+    store.dispatch(checkToken());
+  }, []);
 
   return (
     <Provider store={store}>

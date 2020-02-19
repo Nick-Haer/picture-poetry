@@ -9,6 +9,7 @@ import {
 } from './types';
 import axios from 'axios';
 import { createAlert } from './alert';
+import setAuthHeaders from '../utils/setAuthHeaders';
 
 export const signup = (username, email, password) => async dispatch => {
   const userData = { username, email, password };
@@ -56,12 +57,15 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
-export const checkToken = token => dispatch => {
-  if (token) {
-    console.log('token found ' + token);
+export const checkToken = () => dispatch => {
+  if (localStorage.jsonwebtoken) {
+    setAuthHeaders(localStorage.jsonwebtoken);
+  }
+  console.log(localStorage);
+  if (localStorage.jsonwebtoken) {
     dispatch({
       type: TOKEN_FOUND,
-      payload: token,
+      payload: localStorage.token,
     });
   } else {
     dispatch({
