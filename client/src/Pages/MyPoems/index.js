@@ -1,8 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
+import axios from 'axios';
+import './my-poems.css';
+import { connect } from 'react-redux';
+import { createAlert } from '../../Actions/alert';
+import Alert from '../../components/Alert';
 const MyPoems = props => {
-  return <section></section>;
+  const [poemData, setPoemData] = useState({
+    poems: [],
+  });
+
+  const { poems } = poemData;
+
+  useEffect(() => {
+    async function getAllPoems() {
+      try {
+        const poemsList = await axios.get('/api/poems/getMyPoems');
+
+        setPoemData({ poems: poemsList.data });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getAllPoems();
+  }, []);
+
+  const savePoem = async (event, index) => {
+    try {
+      event.preventDefault();
+      const newPoems = [...poems];
+      const savedPoem = newPoems[index];
+      await axios.put(`api/poems/save/${savedPoem._id}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return (
+    <section>
+      {poems.map((poem, index) => (
+        <div key={poem._id} className='poem-container'>
+          <img className='poem-picture' alt='MET photo' src={poem.picture} />
+          <div className='picture-with-text'>
+            <h1 className='poem-title'>{poem.title}</h1>
+            <p className='poem-text'>{poem.text}</p>
+            <button
+              onClick={event => savePoem(event, index)}
+              className='save-button'>
+              Save Poem
+            </button>
+          </div>
+        </div>
+      ))}
+    </section>
+  );
 };
 
 MyPoems.propTypes = {};

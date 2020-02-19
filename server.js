@@ -37,4 +37,9 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 // Future
 
 // Different Theme Each Day
-//proxy errors, data leaks, general running
+//proxy errors, data leaks, general running flow
+// feedback for saving a poem, markers if poem already saved
+
+//firing axios headers set each time
+//proxy errors
+//error/success handling
