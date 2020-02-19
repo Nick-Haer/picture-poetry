@@ -32,8 +32,10 @@ const PoemsSearch = ({ createAlert }) => {
       const newPoems = [...poems];
       const savedPoem = newPoems[index];
       await axios.put(`api/poems/save/${savedPoem._id}`);
+      createAlert('Poem Saved', 'confirm');
     } catch (error) {
       console.error(error);
+      createAlert(error, 'warning');
     }
   };
   return (

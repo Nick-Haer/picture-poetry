@@ -204,6 +204,31 @@ router.get('/getMyPoems', auth, async (req, res) => {
   }
 });
 
+// Desc: DELETE A user deletes one poem they have written by id
+// Address: /api/poems/getMyPoems
+// Access:   Private
+
+router.delete('/deleteOnePoem/:poemId', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate('myPoems');
+
+    const poemIndex = user.myPoems.findIndex(
+      poem => poem._id.toString() === req.params.poemId
+    );
+
+    console.log(poemIndex);
+
+    user.myPoems.splice(poemIndex, 1);
+
+    await user.save();
+
+    res.status(200).json(user.myPoems);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json('Server Error');
+  }
+});
+
 // Desc: GET Remove one saved poem from the a users savedPoems list by id
 // Address: /api/poems//unSavePoem/:poemId
 // Access:   Private

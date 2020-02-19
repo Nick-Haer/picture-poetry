@@ -5,7 +5,7 @@ import './my-poems.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
-const MyPoems = props => {
+const MyPoems = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
   });
@@ -25,14 +25,20 @@ const MyPoems = props => {
     getAllPoems();
   }, []);
 
-  const savePoem = async (event, index) => {
+  const deletePoem = async (event, index) => {
     try {
       event.preventDefault();
       const newPoems = [...poems];
-      const savedPoem = newPoems[index];
-      await axios.put(`api/poems/save/${savedPoem._id}`);
+      const deletePoem = newPoems[index];
+      console.log(deletePoem);
+      const currentPoems = await axios.delete(
+        `api/poems/deleteOnePoem/${deletePoem._id}`
+      );
+      setPoemData({ poems: currentPoems.data });
+      createAlert('Poem Succesfully Deleted', 'confirm');
     } catch (error) {
       console.error(error);
+      createAlert(error, 'warning');
     }
   };
   return (
@@ -44,9 +50,9 @@ const MyPoems = props => {
             <h1 className='poem-title'>{poem.title}</h1>
             <p className='poem-text'>{poem.text}</p>
             <button
-              onClick={event => savePoem(event, index)}
+              onClick={event => deletePoem(event, index)}
               className='save-button'>
-              Save Poem
+              Delete Poem
             </button>
           </div>
         </div>
@@ -57,4 +63,4 @@ const MyPoems = props => {
 
 MyPoems.propTypes = {};
 
-export default MyPoems;
+export default connect(null, { createAlert })(MyPoems);

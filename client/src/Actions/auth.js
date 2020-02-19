@@ -5,6 +5,7 @@ import {
   LOGIN_FAILURE,
   TOKEN_FOUND,
   NO_TOKEN_FOUND,
+  LOGOUT,
 } from './types';
 import axios from 'axios';
 import { createAlert } from './alert';
@@ -67,6 +68,12 @@ export const checkToken = token => dispatch => {
       type: NO_TOKEN_FOUND,
     });
   }
+};
+
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT,
+  });
 };
 
 // Poem Thoughts

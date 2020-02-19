@@ -30,7 +30,7 @@ const SignUp = ({ signup, createAlert, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/write-poem' />;
+    return <Redirect to='/my-poems' />;
   }
 
   return (

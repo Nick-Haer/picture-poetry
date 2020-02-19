@@ -22,6 +22,7 @@ import { checkToken } from './Actions/auth';
 
 function App() {
   //this isn't running
+
   if (localStorage.jsonwebtoken && localStorage.jsonwebtoken !== 'undefined') {
     console.log('setting auth headers');
     console.log(localStorage);
@@ -36,7 +37,7 @@ function App() {
     console.log('checked token');
     console.log(localStorage.jsonwebtoken);
     store.dispatch(checkToken(localStorage.jsonwebtoken));
-  }, []);
+  });
 
   return (
     <Provider store={store}>

@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import './nav.css';
 import raven from './raven.png';
 import { connect } from 'react-redux';
+import { logout } from '../../Actions/auth';
 
-const NavBar = ({ isAuthenticated, loading }) => {
+const NavBar = ({ isAuthenticated, loading, logout }) => {
+  const logoutHandler = event => {
+    event.preventDefault();
+    logout();
+  };
+
   const publicLinks = (
     <>
       <Link className='nav-link' to='/poems'>
@@ -34,7 +40,7 @@ const NavBar = ({ isAuthenticated, loading }) => {
       <Link className='nav-link' to='/saved-poems'>
         Saved Poems
       </Link>
-      <Link className='nav-link' to='/logout'>
+      <Link onClick={event => logoutHandler(event)} className='nav-link' to='/'>
         Logout
       </Link>
     </>
@@ -63,4 +69,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, { logout })(NavBar);

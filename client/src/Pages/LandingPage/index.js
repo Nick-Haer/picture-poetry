@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import './landing.css';
 import { signup } from '../../Actions/auth';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-const Landing = props => {
+const Landing = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/my-poems' />;
+  }
+
   return (
     <section id='about'>
       <p className='about-text'>
@@ -24,13 +29,11 @@ const Landing = props => {
 
 Landing.propTypes = {};
 
-// const mapStateToProps = (state, ownProps) => {
-//   console.log(state);
-//   console.log(state.signup);
-//   return {
-//     muppet: state.signup.payload,
-//   };
-// };
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
 
-export default connect()(Landing);
+export default connect(mapStateToProps)(Landing);
 // export default Landing;

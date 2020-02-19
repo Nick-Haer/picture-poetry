@@ -5,6 +5,7 @@ import {
   LOGIN_SUCCESS,
   TOKEN_FOUND,
   NO_TOKEN_FOUND,
+  LOGOUT,
 } from '../Actions/types';
 const initialState = {
   isAuthenticated: false,
@@ -35,12 +36,14 @@ export default (state = initialState, action) => {
       };
     case SIGNUP_FAILURE:
     case LOGIN_FAILURE:
+    case LOGOUT:
       // case NO_TOKEN_FOUND:
       localStorage.removeItem('jsonwebtoken');
       return {
         ...state,
         isAuthenticated: false,
         loading: false,
+        token: null,
       };
     default:
       return {

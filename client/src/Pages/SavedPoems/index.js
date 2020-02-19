@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 
-const SavedPoem = props => {
+const SavedPoem = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
   });
@@ -38,6 +38,10 @@ const SavedPoem = props => {
       );
       console.log(newData);
       setPoemData({ poems: newData.data });
+      createAlert(
+        'Poem removed from saved list. You can still re-save it if you like',
+        'confirm'
+      );
     } catch (error) {
       console.error(error);
     }
