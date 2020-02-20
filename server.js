@@ -46,3 +46,8 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 //make delete remove poem everywhere
 //reload
 //css
+
+//hosting
+// mobile responsive
+// have prettier "mypoems" page or landing page for first time users
+// fix css

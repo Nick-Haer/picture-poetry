@@ -7,7 +7,7 @@
 }
 
 section#about {
-  background-image: url(./wave.jpeg);
+  background-image: url(../../assets/wave.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
   color: black;

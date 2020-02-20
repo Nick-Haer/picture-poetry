@@ -47,3 +47,17 @@ section {
   position: relative;
   padding: 15px;
 }
+
+.no-poems-found {
+  background-color: #003153;
+  font-size: 2rem;
+  color: whitesmoke;
+  text-align: center;
+  font-family: 'Lemonada', cursive;
+}
+
+.no-poems-wave-pic {
+  width: 20%;
+  display: block;
+  margin: 0 auto;
+}

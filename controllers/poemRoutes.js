@@ -226,6 +226,8 @@ router.delete('/unSavePoem/:poemId', auth, async (req, res) => {
 
     user.savedPoems.splice(poemIndex, 1);
 
+    console.log(user.savedPoems);
+
     await user.save();
 
     res.status(200).json(user.savedPoems);

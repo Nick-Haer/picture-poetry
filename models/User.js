@@ -21,14 +21,12 @@ const UserSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'Poem',
-      unique: true,
     },
   ],
   savedPoems: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Poem',
-      unique: true,
     },
   ],
 });

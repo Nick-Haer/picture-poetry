@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { randomMetPainting } from '../../utils/getPainting';
-import raven from '../../components/NavBar/raven.png';
+import raven from '../../assets/raven.png';
 import './write.css';
 import { createAlert } from '../../Actions/alert';
 

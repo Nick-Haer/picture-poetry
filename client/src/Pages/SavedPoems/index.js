@@ -5,6 +5,7 @@ import './saved-poems.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
+import wave from '../../assets/wave.jpeg';
 import './saved-poems.css';
 
 const SavedPoem = ({ createAlert }) => {
@@ -49,26 +50,32 @@ const SavedPoem = ({ createAlert }) => {
   };
   return (
     <section>
-      {poems.length > 0
-        ? poems.map((poem, index) => (
-            <div key={poem._id} className='poem-container'>
-              <img
-                className='poem-picture'
-                alt='MET photo'
-                src={poem.picture}
-              />
-              <div className='picture-with-text'>
-                <h1 className='poem-title'>{poem.title}</h1>
-                <p className='poem-text'>{poem.text}</p>
-                <button
-                  onClick={event => unSavePoem(event, index)}
-                  className='save-button'>
-                  Remove from Saved List
-                </button>
-              </div>
+      {poems.length > 0 ? (
+        poems.map((poem, index) => (
+          <div key={poem._id} className='poem-container'>
+            <img className='poem-picture' alt='MET photo' src={poem.picture} />
+            <div className='picture-with-text'>
+              <h1 className='poem-title'>{poem.title}</h1>
+              <p className='poem-text'>{poem.text}</p>
+              <button
+                onClick={event => unSavePoem(event, index)}
+                className='save-button'>
+                Remove from Saved List
+              </button>
             </div>
-          ))
-        : null}
+          </div>
+        ))
+      ) : (
+        <>
+          <img className='no-poems-wave-pic' src={wave}></img>
+          <div className='no-poems-found'>
+            <p>
+              No saved poems yet. Check out the work of your fellow picture
+              poets, and save the ones that strike you
+            </p>
+          </div>
+        </>
+      )}
     </section>
   );
 };

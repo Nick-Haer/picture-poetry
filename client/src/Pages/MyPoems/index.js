@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import './my-poems.css';
+import wave from '../../assets/wave.jpeg';
 const MyPoems = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
@@ -42,22 +43,32 @@ const MyPoems = ({ createAlert }) => {
       createAlert(error, 'warning');
     }
   };
+
   return (
     <section>
-      {poems.map((poem, index) => (
-        <div key={poem._id} className='poem-container'>
-          <img className='poem-picture' alt='MET photo' src={poem.picture} />
-          <div className='picture-with-text'>
-            <h1 className='poem-title'>{poem.title}</h1>
-            <p className='poem-text'>{poem.text}</p>
-            <button
-              onClick={event => deletePoem(event, index)}
-              className='save-button'>
-              Delete Poem
-            </button>
+      {poems.length > 0 ? (
+        poems.map((poem, index) => (
+          <div key={poem._id} className='poem-container'>
+            <img className='poem-picture' alt='MET photo' src={poem.picture} />
+            <div className='picture-with-text'>
+              <h1 className='poem-title'>{poem.title}</h1>
+              <p className='poem-text'>{poem.text}</p>
+              <button
+                onClick={event => deletePoem(event, index)}
+                className='save-button'>
+                Delete Poem
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <>
+          <img className='no-poems-wave-pic' src={wave}></img>
+          <div className='no-poems-found'>
+            <p>No poems here yet. Go ahead and write some!</p>
+          </div>
+        </>
+      )}
     </section>
   );
 };
