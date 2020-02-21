@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './saved-poems.css';
+import '../../App.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
-import './saved-poems.css';
 
 const SavedPoem = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({

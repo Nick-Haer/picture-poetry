@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import './alert.css';
+import '../../App.css';
 
 const Alert = ({ alerts }) => {
   console.log('here');

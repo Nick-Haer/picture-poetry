@@ -18,11 +18,8 @@ section {
   margin-bottom: 10px;
   margin: 0 auto;
   font-size: 1.5rem;
-  /* height: 405px; */
   overflow: auto;
   overflow-y: scroll;
-  /* position: relative; */
-  /* bottom: 40%; */
 }
 
 .poet-content {

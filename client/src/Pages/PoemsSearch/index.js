@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import './poems-search.css';
+import '../../App.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';

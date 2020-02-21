@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../../Actions/auth';
 import { createAlert } from '../../Actions/alert';
-import './signup.css';
+import '../../App.css';
 
 const SignUp = ({ signup, createAlert, isAuthenticated }) => {
   const [formData, setFormData] = useState({

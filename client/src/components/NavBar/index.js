@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './nav.css';
+import '../../App.css';
 import raven from '../../assets/raven.png';
 import { connect } from 'react-redux';
 import { logout } from '../../Actions/auth';

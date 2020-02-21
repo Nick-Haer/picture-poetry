@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { randomMetPainting } from '../../utils/getPainting';
 import raven from '../../assets/raven.png';
 import frame from '../../assets/frame.png';
-import './write.css';
+import '../../App.css';
 import { createAlert } from '../../Actions/alert';
 
 const Write = ({ createAlert }) => {
