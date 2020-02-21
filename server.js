@@ -49,5 +49,4 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 
 //hosting
 // mobile responsive
-// have prettier "mypoems" page or landing page for first time users
 // fix css

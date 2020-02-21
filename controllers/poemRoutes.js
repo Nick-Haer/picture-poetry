@@ -72,21 +72,31 @@ router.route('/').get(async (req, res) => {
   }
 });
 
-router.get('/checkSaved', auth, async (req, res) => {
+router.get('/check/myPoems/saved', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const poems = await Poem.find();
+    const poems = await Poem.find().lean();
+
+    console.log(poems);
+
+    console.log('gotpoems');
 
     let saveCheckedPoems = poems.map(poem => {
+      console.log(poem);
+
       if (user.savedPoems.includes(poem._id)) {
-        // console.log('true');
         poem.saved = true;
-        return poem;
       } else {
-        // console.log('false');
         poem.saved = false;
-        return poem;
       }
+
+      if (user.myPoems.includes(poem._id)) {
+        poem.mine = true;
+      } else {
+        poem.mine = false;
+      }
+
+      return poem;
       // console.log(poem);
     });
 
@@ -102,33 +112,33 @@ router.get('/checkSaved', auth, async (req, res) => {
 // Desc: PUT Like or unlike a poem
 // Address: /api/poems/:poemId
 // Access:   Private
-router.route('/:poemId').put(auth, async (req, res) => {
-  try {
-    const poem = await Poem.findById(req.params.poemId);
+// router.route('/:poemId').put(auth, async (req, res) => {
+//   try {
+//     const poem = await Poem.findById(req.params.poemId);
 
-    if (!poem) {
-      throw 'Poem not found';
-    }
+//     if (!poem) {
+//       throw 'Poem not found';
+//     }
 
-    if (poem.likes.find(like => like.user.toString() == req.user.id)) {
-      const index = poem.likes.findIndex(
-        like => like.user.toString() == req.user.id
-      );
-      poem.likes.splice(index, 1);
-    } else {
-      poem.likes.unshift(req.user.id);
-    }
+//     if (poem.likes.find(like => like.user.toString() == req.user.id)) {
+//       const index = poem.likes.findIndex(
+//         like => like.user.toString() == req.user.id
+//       );
+//       poem.likes.splice(index, 1);
+//     } else {
+//       poem.likes.unshift(req.user.id);
+//     }
 
-    console.log(poem);
+//     console.log(poem);
 
-    await poem.save();
+//     await poem.save();
 
-    res.status(200).json('liked');
-  } catch (error) {
-    console.error(error);
-    res.status(400).json(error);
-  }
-});
+//     res.status(200).json('liked');
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).json(error);
+//   }
+// });
 
 // Desc: PUT Save a poem by id
 // Address: /api/poems/save/:poemId
@@ -138,11 +148,22 @@ router.put('/save/:poemId', auth, async (req, res) => {
     console.log('hit');
     const user = await User.findById(req.user.id);
     if (!user) {
-      res
+      return res
         .status(404)
         .json('Please make an account to save, write, and share poems');
     }
+
+    // const { savedPoems } = user;
+
     console.log(user.savedPoems);
+
+    if (
+      user.savedPoems.filter(poem => poem.toString() === req.params.poemId)
+        .length > 0
+    ) {
+      return res.status(400).json('Poem already saved');
+    }
+    // console.log(user.savedPoems);
     user.savedPoems.unshift(req.params.poemId);
     await user.save();
     res.status(200).json('Poem Saved Succesfully');
@@ -159,7 +180,11 @@ router.put('/save/:poemId', auth, async (req, res) => {
 router.get('/getSavedPoems', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('savedPoems');
-    res.status(200).json(user.savedPoems);
+
+    console.log('savedPoems' in user);
+    if ('savedPoems' in user) {
+      return res.status(200).json(user.savedPoems);
+    }
   } catch (error) {
     console.error(error);
     res.status(400).json('Server Error');

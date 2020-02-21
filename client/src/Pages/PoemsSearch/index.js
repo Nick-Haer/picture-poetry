@@ -17,7 +17,7 @@ const PoemsSearch = ({ createAlert }) => {
   useEffect(() => {
     async function getAllPoems() {
       try {
-        const poemsList = await axios.get('/api/poems/');
+        const poemsList = await axios.get('/api/poems/check/myPoems/saved');
         console.log(poemsList);
         setPoemData({ poems: poemsList.data });
       } catch (error) {
@@ -45,10 +45,7 @@ const PoemsSearch = ({ createAlert }) => {
       console.error(error);
       //if the error comes from a lack of jsonwebtoken
       if (error.response.data) {
-        createAlert(
-          'Please make an account to save write and share poems',
-          'warning'
-        );
+        createAlert(error.response.data, 'warning');
       } else {
         //any other error
         createAlert(error, 'warning');
@@ -65,11 +62,15 @@ const PoemsSearch = ({ createAlert }) => {
             <div className='picture-with-text'>
               <h1 className='poem-title'>{poem.title}</h1>
               <p className='poem-text'>{poem.text}</p>
-              <button
-                onClick={event => savePoem(event, index)}
-                className='save-button'>
-                Save Poem
-              </button>
+              {poem.saved ? (
+                <div className='saved-confirmation'>Poem Saved</div>
+              ) : (
+                <button
+                  onClick={event => savePoem(event, index)}
+                  className='save-button'>
+                  Save Poem
+                </button>
+              )}
             </div>
           </div>
         ))

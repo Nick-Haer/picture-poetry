@@ -47,3 +47,9 @@ section {
   position: relative;
   padding: 15px;
 }
+
+.saved-confirmation {
+  background-color: #003153;
+  width: 25%;
+  text-align: center;
+}

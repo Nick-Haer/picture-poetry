@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { randomMetPainting } from '../../utils/getPainting';
 import raven from '../../assets/raven.png';
+import frame from '../../assets/frame.png';
 import './write.css';
 import { createAlert } from '../../Actions/alert';
 
@@ -31,6 +32,7 @@ const Write = ({ createAlert }) => {
         title,
         text,
       });
+      createAlert('Poem Posted!', 'confirm');
     } catch (error) {
       const err = error.response.data;
       createAlert(err, 'warning');
@@ -61,7 +63,7 @@ const Write = ({ createAlert }) => {
             name='title'
             onChange={event => onChangeHandler(event)}
           />
-          <hr className='fancy-line-top'></hr>
+          {/* <hr className='fancy-line-top'></hr> */}
           <textarea
             autoFocus
             className='poem-input'
