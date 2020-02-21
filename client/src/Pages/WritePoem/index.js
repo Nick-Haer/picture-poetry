@@ -17,6 +17,8 @@ const Write = ({ createAlert }) => {
 
   const { paintingUrl, title, text } = paintingData;
 
+  console.log(text);
+
   const onChangeHandler = event => {
     setPaintingData({
       ...paintingData,
@@ -33,9 +35,11 @@ const Write = ({ createAlert }) => {
         text,
       });
       createAlert('Poem Posted!', 'confirm');
+      scrollToTop();
     } catch (error) {
       const err = error.response.data;
       createAlert(err, 'warning');
+      scrollToTop();
       console.error(err);
     }
   };
@@ -48,6 +52,13 @@ const Write = ({ createAlert }) => {
       .catch(err => console.log(err));
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <section>
       <div className='poet-content'>
@@ -57,7 +68,7 @@ const Write = ({ createAlert }) => {
           alt='A beautiful painting from the MET'></img>
         <div className='text-box-area'>
           <input
-            className='poem-title'
+            className='poem-title-input'
             placeholder='Title Your Poem'
             type='text'
             name='title'
@@ -67,7 +78,7 @@ const Write = ({ createAlert }) => {
           <textarea
             autoFocus
             className='poem-input'
-            cols='30'
+            cols='40'
             rows='15'
             name='text'
             onChange={event => onChangeHandler(event)}></textarea>

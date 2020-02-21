@@ -1,19 +1,73 @@
+/* navbar */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: 3fr 8fr 3fr;
+  background-color: #003153;
+}
+
+#nav-links {
+  display: flex;
+  font-size: 1.2rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: whitesmoke;
+  margin: 0 15px;
+  text-decoration: solid;
+  text-align: center;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+#raven-image {
+  width: 200px;
+  transform: scale(-1, 1);
+}
+
+.image-link {
+  justify-content: center;
+  display: flex;
+}
+
+#title-text {
+  font-size: 4rem;
+  align-self: center;
+  text-align: center;
+  font-family: 'Lemonada', cursive;
+  color: whitesmoke;
+}
+
 /* writepoem */
 
 section {
   background-color: #003153;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .met-painting {
   width: 80%;
   border: black 1px solid;
   margin: 0 auto;
+  margin-top: 10%;
 }
 
 .poem-input {
-  border-style: inset;
-  border-color: purple #003153;
-  border-radius: 20px;
+  border: 5px solid #003153;
+  background-color: #ebd5b3;
   display: block;
   margin-bottom: 10px;
   margin: 0 auto;
@@ -35,9 +89,13 @@ section {
 .poem-write-button {
   padding: 5px;
   margin-left: 15px;
+  background-color: #ebd5b3;
+  border: 5px solid #003153;
 }
 
-.text-box-area {
+.poem-write-button:hover {
+  border: 5px solid firebrick;
+  cursor: pointer;
 }
 
 .button-box {
@@ -46,48 +104,14 @@ section {
   display: flex;
 }
 
-.poem-title {
+.poem-title-input {
+  background-color: #ebd5b3;
   margin: 0 auto;
   text-align: center;
   display: block;
-}
-
-hr.fancy-line-top {
-  height: 30px;
-  border-style: solid;
-  border-color: #8c8b8b;
-  border-width: 1px 0 0 0;
-  border-radius: 20px;
-}
-hr.fancy-line-top:before {
-  margin-top: 10px;
-  display: block;
-  content: '';
-  height: 30px;
-  margin-top: -31px;
-  border-style: solid;
-  border-color: #8c8b8b;
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
-}
-
-hr.fancy-line-bottom {
-  overflow: visible; /* For IE */
-  margin-top: 25px;
-  padding: 0;
-  border: none;
-  border-top: medium double #333;
-  color: #333;
-  text-align: center;
-}
-hr.fancy-line-bottom:after {
-  content: '§';
-  display: inline-block;
-  position: relative;
-  top: -0.7em;
-  font-size: 1.5em;
-  padding: 0 0.25em;
-  background: white;
+  margin-bottom: 5%;
+  width: 50%;
+  border: 5px solid #003153;
 }
 
 /* signup */
@@ -165,12 +189,82 @@ hr.divider:before {
   color: firebrick;
 }
 
+/* login */
+
+.login {
+  background-image: url(./assets/whirlpool.jpeg);
+  background-size: cover;
+  padding: 250px;
+}
+
+#login-box {
+  background-color: #003153;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid black;
+  justify-content: center;
+  font-family: 'Lemonada', cursive;
+}
+
+.login-input {
+  height: 40px;
+  width: 70%;
+  display: block;
+  border: 1px solid black;
+  margin: 15px auto;
+}
+
+.login-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 15px;
+  color: firebrick;
+}
+
+.login-btn {
+  padding: 2px;
+  color: firebrick;
+  background-color: black;
+}
+
+.login-btn:hover {
+  cursor: pointer;
+  border: 1px solid whitesmoke;
+}
+
+hr.divider {
+  margin-top: 30px;
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: whitesmoke;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+hr.divider:before {
+  /* Not really supposed to work, but does */
+  display: block;
+  content: '';
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: whitesmoke;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+.link-to-signup {
+  color: firebrick;
+}
+
 /* savedpoems */
 
-section {
-  /* background-image: url(./whirlpool.jpeg); */
-  background-repeat: no-repeat;
-  background-size: cover;
+.page-title {
+  font-size: 1.5rem;
+  text-align: center;
+  color: whitesmoke;
+  padding-bottom: 15px;
 }
 
 .poem-picture {
@@ -219,56 +313,6 @@ section {
 
 /* poemssearch */
 
-section {
-  /* background-image: url(./whirlpool.jpeg); */
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.poem-picture {
-  width: 200px;
-  padding: 15px;
-}
-
-.poem-container {
-  background-color: black;
-  width: 60%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  color: rgb(148, 121, 121);
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.poem-title {
-  text-transform: capitalize;
-  font-size: 2rem;
-  font-family: 'Lemonada';
-  text-decoration: underline;
-}
-
-.poem-text {
-  border: #003153 1px solid;
-  font-size: 1.2rem;
-  margin-top: 2%;
-  padding-bottom: 50px;
-}
-.save-button {
-  background-color: #003153;
-  color: whitesmoke;
-  padding: 10px;
-  position: absolute;
-  bottom: 10px;
-}
-.save-button:hover {
-  cursor: pointer;
-}
-
-.picture-with-text {
-  position: relative;
-  padding: 15px;
-}
-
 .saved-confirmation {
   background-color: #003153;
   width: 25%;
@@ -276,56 +320,6 @@ section {
 }
 
 /* mypoems */
-
-section {
-  /* background-image: url(./whirlpool.jpeg); */
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.poem-picture {
-  width: 200px;
-  padding: 15px;
-}
-
-.poem-container {
-  background-color: black;
-  width: 60%;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  color: whitesmoke;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.poem-title {
-  text-transform: capitalize;
-  font-size: 2rem;
-  font-family: 'Lemonada';
-  text-decoration: underline;
-}
-
-.poem-text {
-  border: 1px solid #003153;
-  font-size: 1.2rem;
-  margin-top: 2%;
-  padding-bottom: 50px;
-}
-.save-button {
-  background-color: #003153;
-  color: whitesmoke;
-  padding: 10px;
-  position: absolute;
-  bottom: 10px;
-}
-.save-button:hover {
-  cursor: pointer;
-}
-
-.picture-with-text {
-  position: relative;
-  padding: 15px;
-}
 
 .no-poems-found {
   background-color: #003153;
@@ -339,81 +333,6 @@ section {
   width: 20%;
   display: block;
   margin: 0 auto;
-}
-
-/* login */
-
-.login {
-  background-image: url(./assets/whirlpool.jpeg);
-  background-size: cover;
-  padding: 250px;
-}
-
-#login-box {
-  background-color: #003153;
-  width: 50%;
-  margin: 0 auto;
-  padding: 10px;
-  border: 1px solid black;
-  justify-content: center;
-  font-family: 'Lemonada', cursive;
-}
-
-.login-input {
-  height: 40px;
-  width: 70%;
-  display: block;
-  border: 1px solid black;
-  margin: 15px auto;
-}
-
-.login-title {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 15px;
-  color: firebrick;
-}
-
-.login-btn {
-  padding: 2px;
-  color: firebrick;
-  background-color: black;
-}
-
-.login-btn:hover {
-  cursor: pointer;
-  border: 1px solid whitesmoke;
-}
-
-.login-text {
-  text-align: center;
-  font-size: 1.5rem;
-  color: firebrick;
-}
-
-hr.divider {
-  margin-top: 30px;
-  overflow: visible; /* For IE */
-  height: 30px;
-  border-style: solid;
-  border-color: whitesmoke;
-  border-width: 1px 0 0 0;
-  border-radius: 20px;
-}
-hr.divider:before {
-  /* Not really supposed to work, but does */
-  display: block;
-  content: '';
-  height: 30px;
-  margin-top: -31px;
-  border-style: solid;
-  border-color: whitesmoke;
-  border-width: 0 0 1px 0;
-  border-radius: 20px;
-}
-
-.link-to-signup {
-  color: firebrick;
 }
 
 /* landingpage */
@@ -460,56 +379,4 @@ section#about {
   text-align: center;
   color: whitesmoke;
   font-size: 2rem;
-}
-
-/* navbar */
-
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.navbar {
-  display: grid;
-  grid-template-columns: 3fr 8fr 3fr;
-  background-color: #003153;
-}
-
-#nav-links {
-  display: flex;
-  font-size: 1.5rem;
-  align-items: center;
-}
-
-.nav-link {
-  color: whitesmoke;
-  margin: 0 15px;
-  text-decoration: solid;
-  text-align: center;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-#raven-image {
-  width: 200px;
-  transform: scale(-1, 1);
-}
-
-.image-link {
-  justify-content: center;
-  display: flex;
-}
-
-#title-text {
-  font-size: 4rem;
-  align-self: center;
-  text-align: center;
-  font-family: 'Lemonada', cursive;
-  color: whitesmoke;
 }

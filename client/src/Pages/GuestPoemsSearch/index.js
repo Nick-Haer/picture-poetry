@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
-const MyPoems = ({ createAlert }) => {
+
+const GuestPoemsSearch = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
   });
@@ -16,8 +17,8 @@ const MyPoems = ({ createAlert }) => {
   useEffect(() => {
     async function getAllPoems() {
       try {
-        const poemsList = await axios.get('/api/poems/getMyPoems');
-
+        const poemsList = await axios.get('/api/poems');
+        console.log(poemsList);
         setPoemData({ poems: poemsList.data });
       } catch (error) {
         console.error(error);
@@ -26,26 +27,8 @@ const MyPoems = ({ createAlert }) => {
     getAllPoems();
   }, []);
 
-  const deletePoem = async (event, index) => {
-    try {
-      event.preventDefault();
-      const newPoems = [...poems];
-      const deletePoem = newPoems[index];
-      console.log(deletePoem);
-      const currentPoems = await axios.delete(
-        `api/poems/deleteOnePoem/${deletePoem._id}`
-      );
-      setPoemData({ poems: currentPoems.data });
-      createAlert('Poem Succesfully Deleted', 'confirm');
-    } catch (error) {
-      console.error(error);
-      createAlert(error, 'warning');
-    }
-  };
-
   return (
     <section>
-      <div className='page-title'>My Poems</div>
       {poems.length > 0 ? (
         poems.map((poem, index) => (
           <div key={poem._id} className='poem-container'>
@@ -53,11 +36,6 @@ const MyPoems = ({ createAlert }) => {
             <div className='picture-with-text'>
               <h1 className='poem-title'>{poem.title}</h1>
               <p className='poem-text'>{poem.text}</p>
-              <button
-                onClick={event => deletePoem(event, index)}
-                className='save-button'>
-                Delete Poem
-              </button>
             </div>
           </div>
         ))
@@ -65,7 +43,7 @@ const MyPoems = ({ createAlert }) => {
         <>
           <img className='no-poems-wave-pic' src={wave}></img>
           <div className='no-poems-found'>
-            <p>No poems here yet. Go ahead and write some!</p>
+            <p>No poems here yet. Go ahead and write some to share!</p>
           </div>
         </>
       )}
@@ -73,6 +51,6 @@ const MyPoems = ({ createAlert }) => {
   );
 };
 
-MyPoems.propTypes = {};
+GuestPoemsSearch.propTypes = {};
 
-export default connect(null, { createAlert })(MyPoems);
+export default connect(null, { createAlert })(GuestPoemsSearch);

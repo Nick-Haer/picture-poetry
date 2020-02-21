@@ -49,6 +49,7 @@ const SavedPoem = ({ createAlert }) => {
   };
   return (
     <section>
+      <div className='page-title'>Saved Poems</div>
       {poems.length > 0 ? (
         poems.map((poem, index) => (
           <div key={poem._id} className='poem-container'>
