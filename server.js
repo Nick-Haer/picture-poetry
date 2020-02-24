@@ -16,6 +16,10 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
 dbConnection();
 
 app.use(routes);
@@ -53,3 +57,9 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 // favicon for tabs
 // new lines in text areas
 // logout glitch
+
+// "test": "echo \"Error: no test specified\" && exit 1",
+// "start": "node server.js",
+// "server": "nodemon server",
+// "client": "npm start --prefix client",
+// "dev": "concurrently \"npm run server\" \"npm run client\""
