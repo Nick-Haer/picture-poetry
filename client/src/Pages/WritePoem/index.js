@@ -17,7 +17,13 @@ const Write = ({ createAlert }) => {
 
   const { paintingUrl, title, text } = paintingData;
 
-  console.log(text);
+  useEffect(() => {
+    randomMetPainting()
+      .then(url => {
+        setPaintingData({ ...paintingData, paintingUrl: url });
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const onChangeHandler = event => {
     setPaintingData({
@@ -44,19 +50,27 @@ const Write = ({ createAlert }) => {
     }
   };
 
-  useEffect(() => {
-    randomMetPainting()
-      .then(url => {
-        setPaintingData({ ...paintingData, paintingUrl: url });
-      })
-      .catch(err => console.log(err));
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
+  };
+
+  const textAreaNewLines = event => {
+    console.log(event.key);
+    if (event.key === 'Enter') {
+      console.log(event.target.name);
+      const lettersArray = event.target.value.split('');
+      const lineBreaked = lettersArray.concat('<br>');
+      console.log(lineBreaked);
+      const textData = lineBreaked.join('');
+      console.log(textData);
+      setPaintingData({
+        ...paintingData,
+        [event.target.name]: textData,
+      });
+    }
   };
 
   return (
@@ -81,7 +95,8 @@ const Write = ({ createAlert }) => {
             cols='40'
             rows='15'
             name='text'
-            onChange={event => onChangeHandler(event)}></textarea>
+            onChange={event => onChangeHandler(event)}
+            onKeyPress={event => textAreaNewLines(event)}></textarea>
           <hr className='fancy-line-bottom'></hr>
           <div className='button-box'>
             <button
