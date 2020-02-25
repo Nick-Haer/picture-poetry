@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
   switch (type) {
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
-      console.log(payload.token);
       localStorage.setItem('jsonwebtoken', payload.token);
       return {
         ...state,
@@ -27,8 +26,6 @@ export default (state = initialState, action) => {
         loading: false,
       };
     case TOKEN_FOUND:
-      console.log(payload);
-      // localStorage.setItem('jsonwebtoken', payload);
       return {
         ...state,
         isAuthenticated: true,
@@ -37,7 +34,6 @@ export default (state = initialState, action) => {
     case SIGNUP_FAILURE:
     case LOGIN_FAILURE:
     case LOGOUT:
-      // case NO_TOKEN_FOUND:
       localStorage.removeItem('jsonwebtoken');
       return {
         ...state,

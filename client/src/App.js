@@ -22,15 +22,11 @@ import store from './store';
 import { checkToken } from './Actions/auth';
 
 if (localStorage.jsonwebtoken && localStorage.jsonwebtoken !== 'undefined') {
-  console.log(localStorage.jsonwebtoken);
   setAuthHeaders(localStorage.jsonwebtoken);
 } else {
-  console.log('did not set auth headers');
 }
 
 function App() {
-  //this isn't running
-
   useEffect(() => {
     store.dispatch(checkToken());
   }, []);

@@ -64,7 +64,6 @@ export const checkToken = () => dispatch => {
   if (localStorage.jsonwebtoken) {
     setAuthHeaders(localStorage.jsonwebtoken);
   }
-  console.log(localStorage);
   if (localStorage.jsonwebtoken) {
     dispatch({
       type: TOKEN_FOUND,

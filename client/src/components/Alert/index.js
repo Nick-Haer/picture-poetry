@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import '../../App.css';
 
 const Alert = ({ alerts }) => {
-  console.log('here');
-  console.log(alerts);
-  console.log(alerts.length);
   return (
     <>
       {alerts !== null &&

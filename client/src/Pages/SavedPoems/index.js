@@ -30,10 +30,8 @@ const SavedPoem = ({ createAlert }) => {
   const unSavePoem = async (event, index) => {
     try {
       event.preventDefault();
-      console.log('unsaving...');
       const newPoems = [...poems];
       const savedPoem = newPoems[index];
-      console.log(savedPoem._id);
       const newData = await axios.delete(
         `api/poems/unSavePoem/${savedPoem._id}`
       );

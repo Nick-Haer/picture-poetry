@@ -31,7 +31,6 @@ const MyPoems = ({ createAlert }) => {
       event.preventDefault();
       const newPoems = [...poems];
       const deletePoem = newPoems[index];
-      console.log(deletePoem);
       const currentPoems = await axios.delete(
         `api/poems/deleteOnePoem/${deletePoem._id}`
       );

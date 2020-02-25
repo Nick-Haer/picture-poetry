@@ -84,7 +84,6 @@ const Write = ({ createAlert }) => {
             name='title'
             onChange={event => onChangeHandler(event)}
           />
-          {/* <hr className='fancy-line-top'></hr> */}
           <textarea
             autoFocus
             className='poem-input'

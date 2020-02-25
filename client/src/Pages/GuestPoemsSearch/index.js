@@ -18,7 +18,6 @@ const GuestPoemsSearch = ({ createAlert }) => {
     async function getAllPoems() {
       try {
         const poemsList = await axios.get('/api/poems');
-        console.log(poemsList);
         setPoemData({ poems: poemsList.data });
       } catch (error) {
         console.error(error);
