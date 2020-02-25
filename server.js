@@ -6,6 +6,8 @@ const dbConnection = require('./dbConnection');
 
 const app = express();
 
+const path = require('path');
+
 const mongoose = require('mongoose');
 
 const routes = require('./controllers');
