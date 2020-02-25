@@ -73,6 +73,7 @@ section {
   margin: 0 auto;
   font-size: 1.5rem;
   overflow: auto;
+  white-space: pre-line;
   overflow-y: scroll;
 }
 
