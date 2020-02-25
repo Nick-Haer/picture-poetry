@@ -24,7 +24,7 @@ const PoemsSearch = ({ createAlert }) => {
       }
     }
     getAllPoems();
-  }, []);
+  });
 
   const scrollToTop = () => {
     window.scrollTo({
