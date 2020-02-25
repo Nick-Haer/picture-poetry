@@ -54,7 +54,6 @@ app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
 //hosting
 // mobile responsive
 // fix css
-// favicon for tabs
 // new lines in text areas
 // logout glitch
 
