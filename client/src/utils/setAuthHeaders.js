@@ -8,7 +8,6 @@ import axios from 'axios';
 const setAuthHeaders = token => {
   if (token) {
     axios.defaults.headers.common['x-auth-token'] = token;
-    console.log(axios.defaults.headers.common['x-auth-token']);
   } else {
     delete axios.defaults.headers.common['x-auth-token'];
   }
