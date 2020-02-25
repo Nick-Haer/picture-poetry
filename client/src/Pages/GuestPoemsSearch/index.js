@@ -9,10 +9,6 @@ import wave from '../../assets/wave.jpeg';
 import { Redirect } from 'react-router-dom';
 
 const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
-  if (isAuthenticated) {
-    return <Redirect to='/poems-search' />;
-  }
-
   const [poemData, setPoemData] = useState({
     poems: [],
   });
@@ -30,6 +26,10 @@ const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
     }
     getAllPoems();
   }, []);
+
+  if (isAuthenticated) {
+    return <Redirect to='/poems-search' />;
+  }
 
   return (
     <section>
