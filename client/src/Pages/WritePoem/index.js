@@ -58,14 +58,10 @@ const Write = ({ createAlert }) => {
   };
 
   const textAreaNewLines = event => {
-    console.log(event.key);
     if (event.key === 'Enter') {
-      console.log(event.target.name);
       const lettersArray = event.target.value.split('');
       const lineBreaked = lettersArray.concat('<br>');
-      console.log(lineBreaked);
       const textData = lineBreaked.join('');
-      console.log(textData);
       setPaintingData({
         ...paintingData,
         [event.target.name]: textData,
