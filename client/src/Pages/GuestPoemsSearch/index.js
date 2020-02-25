@@ -6,8 +6,13 @@ import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
+import { Redirect } from 'react-router-dom';
 
-const GuestPoemsSearch = ({ createAlert }) => {
+const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/poems-search' />;
+  }
+
   const [poemData, setPoemData] = useState({
     poems: [],
   });
@@ -52,4 +57,10 @@ const GuestPoemsSearch = ({ createAlert }) => {
 
 GuestPoemsSearch.propTypes = {};
 
-export default connect(null, { createAlert })(GuestPoemsSearch);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps, { createAlert })(GuestPoemsSearch);

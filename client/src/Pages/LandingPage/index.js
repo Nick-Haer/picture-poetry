@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
-    return <Redirect to='/my-poems' />;
+    return <Redirect to='/poems-search' />;
   }
 
   return (
