@@ -11,7 +11,11 @@
 
 ## Overview
 
-Art inspires art, in paint and in words. Picture Poetry is built at the intersection of poems and paintings. Users are prompted with a painting selected at random from the Metropolitan Museum of Art, and can then write a poem inspired by that painting, guided by whichever interpretation resonates with them. You can also browse the work of other picture poets, saving the works that you like best to you own collection. A fullstack MERN application with user Auth, this web app was diifficult yet deply rewarding to make. Picture Poetry is a long time passion project of mine, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
+Art inspires art, in paint and in words. Picture Poetry is built at the intersection of poems and paintings. Users are prompted with a painting selected at random from the Metropolitan Museum of Art, and can then write a poem inspired by that painting, guided by whichever interpretation resonates with them.
+
+You can also browse the work of other picture poets, saving the works that you like best to you own collection. A fullstack MERN application with user Auth, this web app was diifficult yet deply rewarding to make.
+
+Picture Poetry is a long time passion project of mine, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
 
 Check out this project deployed to heroku [here](https://picturepoetry.herokuapp.com/)
 
