@@ -1,68 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Clickhole Scraper: The Bottomless Pit
 
-## Available Scripts
+# Project Features
 
-In the project directory, you can run:
+1. [Overview](#Overview)
+2. [Technology Used](#Technology-Used)
+3. [Challenges](#Challenges)
+4. [Final Thoughts](#Final-Thoughts)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Looking for a laugh? This app is a web scraper targeting the joke news site Clickhole, giving users the option to save articles to a database, and then add notes to them. Simply click the "Scrape" button to show up all new clickhole articles. From the home page, you can see a title and brief summary of each article. You can also follow a link to the article itself. If you like one of them, you can save them to the database, add your thoughts, and then view all saved articles under the "saved" page.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Check out this project deployed to heroku [here](https://picturepoetry.herokuapp.com/)
 
-### `npm test`
+## Technology-Used
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node
+- Express
+- React
+- Redux
+- Mongoose
+- MongoDB
+- React-Router
+- Express-Validator
+- Bcrypt
+- Jsonwebtoken
+- Concurrently
+- Axios
 
-### `npm run build`
+## Challenges
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The first project to incorporate MongoDB as a backend, along with several express routes, this project proved one of the most time consuming, but also one of the most rewarding. Working on it helped build understanding of how the MongoDB database worked, how to organize several different routes, and how to incorporate scraped web data into an app.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Final-Thoughts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+I completed this project, which would have worked very well paired with React, while on the edge of learning React. As a result, I began learning how to make MERN apps with an appreciation for how it streamlined some of the processes that were intensive to build in this app.
