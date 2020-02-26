@@ -7,9 +7,11 @@
 3. [Challenges](#Challenges)
 4. [Final Thoughts](#Final-Thoughts)
 
+<img src="./client/src/assets/screenshot.png" alt="poem write" width="200"/>
+
 ## Overview
 
-Looking for a laugh? This app is a web scraper targeting the joke news site Clickhole, giving users the option to save articles to a database, and then add notes to them. Simply click the "Scrape" button to show up all new clickhole articles. From the home page, you can see a title and brief summary of each article. You can also follow a link to the article itself. If you like one of them, you can save them to the database, add your thoughts, and then view all saved articles under the "saved" page.
+Art inspires art, in paint and in words. Picture Poetry is built at the intersection of poems and paintings. Users are prompted with a painting selected at random from the Metropolitan Museum of Art, and can then write a poem inspired by that painting, guided by whichever interpretation resonates with them. You can also browse the work of other picture poets, saving the works that you like best to you own collection. A fullstack MERN application with user Auth, this web app was diifficult yet deply rewarding to make. Picture Poetry is a long time passion project of mine, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
 
 Check out this project deployed to heroku [here](https://picturepoetry.herokuapp.com/)
 
@@ -30,8 +32,8 @@ Check out this project deployed to heroku [here](https://picturepoetry.herokuapp
 
 ## Challenges
 
-The first project to incorporate MongoDB as a backend, along with several express routes, this project proved one of the most time consuming, but also one of the most rewarding. Working on it helped build understanding of how the MongoDB database worked, how to organize several different routes, and how to incorporate scraped web data into an app.
+This project was at its most difficult in configuring the authentication flow, especially as this was my largest yet practical application of Redux in an app. The knowledge gained from overcoming these obstacles, however, has proved highly benefical in creating user friendly web apps that need complex auth flows with protected routes.
 
 ## Final-Thoughts
 
-I completed this project, which would have worked very well paired with React, while on the edge of learning React. As a result, I began learning how to make MERN apps with an appreciation for how it streamlined some of the processes that were intensive to build in this app.
+This project turned out different than originally visualized because each step brought a new batch of ideas I want to implement. Like a painting, a website always has room for more, and over the following months I hope to realize more and more of that vision.
