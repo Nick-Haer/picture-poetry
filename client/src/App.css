@@ -382,3 +382,10 @@ section#about {
   color: whitesmoke;
   font-size: 2rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
