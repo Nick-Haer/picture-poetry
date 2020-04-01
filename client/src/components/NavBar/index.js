@@ -60,8 +60,6 @@ const NavBar = ({ isAuthenticated, loading, logout }) => {
   );
 };
 
-NavBar.propTypes = {};
-
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,

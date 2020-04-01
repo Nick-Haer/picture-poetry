@@ -18,13 +18,14 @@ const PoemsSearch = ({ createAlert }) => {
     async function getAllPoems() {
       try {
         const poemsList = await axios.get('/api/poems/check/myPoems/saved');
+        console.log('getting poems');
         setPoemData({ poems: poemsList.data });
       } catch (error) {
         console.error(error);
       }
     }
     getAllPoems();
-  });
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -39,6 +40,8 @@ const PoemsSearch = ({ createAlert }) => {
       const newPoems = [...poems];
       const savedPoem = newPoems[index];
       await axios.put(`api/poems/save/${savedPoem._id}`);
+      const poemsList = await axios.get('/api/poems/check/myPoems/saved');
+      setPoemData({ poems: poemsList.data });
       createAlert('Poem Saved', 'confirm');
     } catch (error) {
       console.error(error);

@@ -19,13 +19,13 @@
   display: flex;
   font-size: 1.2rem;
   align-items: center;
+  justify-content: center;
 }
 
 .nav-link {
   color: whitesmoke;
   margin: 0 15px;
   text-decoration: solid;
-  text-align: center;
 }
 
 .nav-link:hover {
@@ -382,10 +382,64 @@ section#about {
   color: whitesmoke;
   font-size: 2rem;
 }
+@media only screen and (max-width: 1200px) {
+  .poet-content {
+    margin: 0 auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: black;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .met-painting {
+    width: 48%;
+    border: black 1px solid;
+    margin-top: 10%;
+  }
+
+  .poem-input {
+    border: 5px solid #003153;
+    background-color: #ebd5b3;
+    display: block;
+    margin-bottom: 10px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    overflow: auto;
+    white-space: pre-line;
+    overflow-y: scroll;
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .login {
+    padding: 50px;
+  }
+
+  .signup {
+    padding: 50px;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .navbar {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: #003153;
+  }
+
+  .poem-container {
+    background-color: black;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    color: whitesmoke;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }

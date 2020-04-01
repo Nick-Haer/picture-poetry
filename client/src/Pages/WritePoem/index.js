@@ -75,7 +75,8 @@ const Write = ({ createAlert }) => {
         <img
           className='met-painting'
           src={paintingUrl}
-          alt='A beautiful painting from the MET'></img>
+          alt='A beautiful painting from the MET'
+        />
         <div className='text-box-area'>
           <input
             className='poem-title-input'
@@ -91,8 +92,8 @@ const Write = ({ createAlert }) => {
             rows='15'
             name='text'
             onChange={event => onChangeHandler(event)}
-            onKeyPress={event => textAreaNewLines(event)}></textarea>
-          <hr className='fancy-line-bottom'></hr>
+            onKeyPress={event => textAreaNewLines(event)}
+          />
           <div className='button-box'>
             <button
               onClick={event => onSubmitHandler(event)}

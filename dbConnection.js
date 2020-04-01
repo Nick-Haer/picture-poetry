@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 async function dbConnect() {
   try {
+    console.log('connecting...');
     await mongoose.connect(
       process.env.MONGODB_URI || 'mongodb://localhost/picturepoetryDB',
       {

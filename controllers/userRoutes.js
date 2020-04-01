@@ -8,7 +8,6 @@ const auth = require('../middleware/auth');
 // Desc: POST Creates Account with User Data
 // Address: /api/users
 // Access:   Public
-
 router.post(
   '/',
   //validate user inputs
@@ -29,12 +28,20 @@ router.post(
     let { username, email, password } = req.body;
 
     try {
-      const userFound = await User.find({ email });
+      const userFoundByEmail = await User.find({ email });
       //check if the user has already signed up
-      if (userFound.length !== 0) {
+      if (userFoundByEmail.length !== 0) {
         return res
           .status(400)
           .json({ errors: ['An account with that email already exists'] });
+      }
+
+      const userFoundByUsername = await User.find({ username });
+
+      if (userFoundByUsername.length !== 0) {
+        return res
+          .status(400)
+          .json({ errors: ['An account with that username already exists'] });
       }
       //encrypt password, then create user
       password = await bcrypt.hash(password, 10);
@@ -48,7 +55,7 @@ router.post(
       res.status(200).json({ token });
     } catch (error) {
       console.error(error);
-      return res.status(400).json({ errors: 'Server error' });
+      return res.status(400).json({ errors: ['Server error'] });
     }
   }
 );
@@ -78,6 +85,7 @@ router.post(
           errors: ['Incorrect username or password'],
         });
       }
+      console.log('logging in');
 
       const user = userFound.pop();
 

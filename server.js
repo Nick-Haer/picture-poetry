@@ -18,14 +18,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
-//     if (err) {
-//       res.status(500).send(err);
-//     }
-//   });
-// });
-
 dbConnection();
 
 app.use(routes);
