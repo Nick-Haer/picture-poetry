@@ -36,9 +36,7 @@
     "random-words": "^1.1.0",
     "redux-devtools-extension": "^2.13.8"
   },
-  "devDependencies": {
-    "cypress": "^8.0.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "12.1.0"
   }
