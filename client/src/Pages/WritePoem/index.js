@@ -17,6 +17,8 @@ const Write = ({ createAlert }) => {
 
   const { paintingUrl, title, text } = paintingData;
 
+  console.log(title);
+
   useEffect(() => {
     randomMetPainting()
       .then(url => {
