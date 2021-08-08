@@ -382,6 +382,14 @@ section#about {
   color: whitesmoke;
   font-size: 2rem;
 }
+
+.autocompleteSearch {
+  border: solid black 1px;
+  background-color: grey;
+  margin-left: 20%;
+  margin-bottom: 10px;
+}
+
 @media only screen and (max-width: 1200px) {
   .poet-content {
     margin: 0 auto;

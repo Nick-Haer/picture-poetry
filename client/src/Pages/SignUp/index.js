@@ -6,7 +6,7 @@ import { signup } from '../../Actions/auth';
 import { createAlert } from '../../Actions/alert';
 import '../../App.css';
 
-const SignUp = ({ signup, createAlert, isAuthenticated }) => {
+const SignUp = ({ doSignup, doCreateAlert, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -19,9 +19,9 @@ const SignUp = ({ signup, createAlert, isAuthenticated }) => {
   const submitHandler = event => {
     event.preventDefault();
     if (password !== password2) {
-      createAlert('Passwords do not match', 'warning');
+      doCreateAlert('Passwords do not match', 'warning');
     } else {
-      signup(username, email, password);
+      doSignup(username, email, password);
     }
   };
 
@@ -88,10 +88,14 @@ const SignUp = ({ signup, createAlert, isAuthenticated }) => {
   );
 };
 
-SignUp.propTypes = {};
+SignUp.propTypes = {
+  doSignup: PropTypes.func.isRequired,
+  doCreateAlert: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = state => {
   return { isAuthenticated: state.auth.isAuthenticated };
 };
 
-export default connect(mapStateToProps, { signup, createAlert })(SignUp);
+export default connect(mapStateToProps, { doSignup: signup, doCreateAlert: createAlert })(SignUp);

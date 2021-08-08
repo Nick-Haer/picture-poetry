@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../../App.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
-import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
 
 const SavedPoem = ({ createAlert }) => {
@@ -78,6 +77,8 @@ const SavedPoem = ({ createAlert }) => {
   );
 };
 
-SavedPoem.propTypes = {};
+SavedPoem.propTypes = {
+  createAlert: PropTypes.func.isRequired,
+};
 
 export default connect(null, { createAlert })(SavedPoem);

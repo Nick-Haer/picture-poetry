@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
@@ -23,7 +22,6 @@ import { checkToken } from './Actions/auth';
 
 if (localStorage.jsonwebtoken && localStorage.jsonwebtoken !== 'undefined') {
   setAuthHeaders(localStorage.jsonwebtoken);
-} else {
 }
 
 function App() {

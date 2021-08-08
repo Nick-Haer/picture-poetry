@@ -10,7 +10,6 @@ export default (state = initalState, action) => {
     case DELETE_ALERT:
       const newState = state.filter(alert => alert.id !== payload);
       return newState;
-
     default:
       return state;
   }

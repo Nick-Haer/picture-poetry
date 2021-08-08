@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
+
 const MyPoems = ({ createAlert }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
@@ -72,6 +73,8 @@ const MyPoems = ({ createAlert }) => {
   );
 };
 
-MyPoems.propTypes = {};
+MyPoems.propTypes = {
+  createAlert: PropTypes.func.isRequired,
+};
 
 export default connect(null, { createAlert })(MyPoems);

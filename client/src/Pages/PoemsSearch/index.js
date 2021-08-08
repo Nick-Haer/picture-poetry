@@ -89,6 +89,8 @@ const PoemsSearch = ({ createAlert }) => {
   );
 };
 
-PoemsSearch.propTypes = {};
+PoemsSearch.propTypes = {
+  createAlert: PropTypes.func.isRequired,
+};
 
 export default connect(null, { createAlert })(PoemsSearch);

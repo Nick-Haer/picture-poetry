@@ -7,13 +7,21 @@ import { createAlert } from '../../Actions/alert';
 import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
 import { Redirect } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
-const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
+const GuestPoemsSearch = ({ isAuthenticated }) => {
   const [poemData, setPoemData] = useState({
     poems: [],
   });
 
+  const [poemFilter, setPoemFilter] = useState({
+    selectedName: '',
+    includedString: '',
+  });
+
   const { poems } = poemData;
+  const { selectedName, includedString } = poemFilter;
 
   useEffect(() => {
     async function getAllPoems() {
@@ -31,10 +39,53 @@ const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
     return <Redirect to='/poems-search' />;
   }
 
+  console.log(selectedName, 'select');
+  console.log(includedString, 'included');
+
+  const poemSort = (poemTitle) => {
+    if ((selectedName && selectedName === poemTitle) 
+    || (includedString && poemTitle.toLowerCase().includes(includedString.toLowerCase()))
+    || (!selectedName && !includedString)) {
+      return true;
+    }
+    return false;
+  }
+
+  let poemsToDisplay = [];
+
+  if (poems && poems.length > 0) {
+    poemsToDisplay = [...poems.filter(({title}) => poemSort(title))] 
+  }
+
   return (
     <section>
-      {poems.length > 0 ? (
-        poems.map((poem, index) => (
+      <Autocomplete
+        id="combo-box-demo"
+        className="autocompleteSearch"
+        options={(poems && poems.length > 0) ? [...poems]
+          .sort((a, b) => a.title.localeCompare(b.title)) : []}
+        getOptionLabel={(option) => option.title}
+        style={{ width: 300 }}
+        onChange={(e, newVal) => {
+          if (!newVal) {
+            setPoemFilter({includedString: '', selectedName: ''})
+          } else {
+            setPoemFilter({includedString: '', selectedName: newVal.title})
+          }
+        }}
+        onInputChange={(e, newVal) => {
+          if (!newVal) {
+            setPoemFilter({includedString: '', selectedName: ''})
+          } else {
+            setPoemFilter({includedString: newVal, selectedName: ''})
+          }
+        }}
+        renderInput={(params) => <TextField {...params} label="Search Poems" variant="outlined" />}
+        clearOnEscape={false}
+      />
+      {poemsToDisplay.length > 0 ? (
+        poemsToDisplay.slice().sort((a, b) => a.title.localeCompare(b.title))
+        .map((poem, index) => (
           <div key={poem._id} className='poem-container'>
             <img className='poem-picture' alt='MET photo' src={poem.picture} />
             <div className='picture-with-text'>
@@ -45,17 +96,31 @@ const GuestPoemsSearch = ({ createAlert, isAuthenticated }) => {
         ))
       ) : (
         <>
-          <img className='no-poems-wave-pic' src={wave}></img>
-          <div className='no-poems-found'>
-            <p>No poems here yet. Go ahead and write some to share!</p>
-          </div>
+        {poems && poems.length === 0 && (
+          <>
+            <img className='no-poems-wave-pic' src={wave}></img>
+            <div className='no-poems-found'>
+              <p>No poems here yet. Go ahead and write some to share!</p>
+            </div>
+          </>
+        )}
+        {poems && poems.length > 0 && poemsToDisplay.length === 0 && (
+           <>
+            <img className='no-poems-wave-pic' src={wave}></img>
+            <div className='no-poems-found'>
+              <p>No poems matched that search</p>
+            </div>
+          </>
+        )} 
         </>
       )}
     </section>
   );
 };
 
-GuestPoemsSearch.propTypes = {};
+GuestPoemsSearch.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

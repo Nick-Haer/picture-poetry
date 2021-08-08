@@ -16,7 +16,6 @@ const Alert = ({ alerts }) => {
     </>
   );
 };
-//backticks and types
 
 Alert.propTypes = {};
 

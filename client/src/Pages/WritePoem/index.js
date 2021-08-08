@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { randomMetPainting } from '../../utils/getPainting';
-import raven from '../../assets/raven.png';
-import frame from '../../assets/frame.png';
 import '../../App.css';
 import { createAlert } from '../../Actions/alert';
 
@@ -109,6 +107,8 @@ const Write = ({ createAlert }) => {
   );
 };
 
-Write.propTypes = {};
+Write.propTypes = {
+  createAlert: PropTypes.func.isRequired,
+};
 
 export default connect(null, { createAlert })(Write);
