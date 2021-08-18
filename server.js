@@ -8,8 +8,6 @@ const app = express();
 
 const path = require('path');
 
-const mongoose = require('mongoose');
-
 const routes = require('./controllers');
 
 app.use(express.urlencoded({ extended: true }));
