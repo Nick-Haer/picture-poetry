@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Nick-Haer/picture-poetry#readme",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bcrypt": "^5.0.1",
     "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
