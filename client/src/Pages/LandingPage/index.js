@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../App.css';
-import { signup } from '../../Actions/auth';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 

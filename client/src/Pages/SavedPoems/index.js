@@ -50,7 +50,7 @@ const SavedPoem = ({ createAlert }) => {
       {poems.length > 0 ? (
         poems.map((poem, index) => (
           <div key={poem._id} className='poem-container'>
-            <img className='poem-picture' alt='MET photo' src={poem.picture} />
+            <img className='poem-picture' alt='poem inspiration' src={poem.picture} />
             <div className='picture-with-text'>
               <h1 className='poem-title'>{poem.title}</h1>
               <p className='poem-text'>{poem.text}</p>
@@ -64,7 +64,7 @@ const SavedPoem = ({ createAlert }) => {
         ))
       ) : (
         <>
-          <img className='no-poems-wave-pic' src={wave}></img>
+          <img className='no-poems-wave-pic' alt="no poems found wave" src={wave}></img>
           <div className='no-poems-found'>
             <p>
               No saved poems yet. Check out the work of your fellow picture

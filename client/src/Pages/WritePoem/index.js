@@ -20,7 +20,7 @@ const Write = ({ createAlert }) => {
   useEffect(() => {
     randomMetPainting()
       .then(url => {
-        setPaintingData({ ...paintingData, paintingUrl: url });
+        setPaintingData((pData) => ({ ...pData, paintingUrl: url }));
       })
       .catch(err => console.log(err));
   }, []);
@@ -35,7 +35,7 @@ const Write = ({ createAlert }) => {
   const onSubmitHandler = async event => {
     event.preventDefault();
     try {
-      const res = await axios.post('/api/poems', {
+      await axios.post('/api/poems', {
         picture: paintingUrl,
         title,
         text,

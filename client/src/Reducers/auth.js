@@ -4,7 +4,6 @@ import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   TOKEN_FOUND,
-  NO_TOKEN_FOUND,
   LOGOUT,
 } from '../Actions/types';
 const initialState = {

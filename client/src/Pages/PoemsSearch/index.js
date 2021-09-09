@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../../App.css';
 import { connect } from 'react-redux';
 import { createAlert } from '../../Actions/alert';
-import Alert from '../../components/Alert';
 import wave from '../../assets/wave.jpeg';
 
 const PoemsSearch = ({ createAlert }) => {
@@ -61,7 +60,7 @@ const PoemsSearch = ({ createAlert }) => {
       {poems.length > 0 ? (
         poems.map((poem, index) => (
           <div key={poem._id} className='poem-container'>
-            <img className='poem-picture' alt='MET photo' src={poem.picture} />
+            <img className='poem-picture' alt='MET' src={poem.picture} />
             <div className='picture-with-text'>
               <h1 className='poem-title'>{poem.title}</h1>
               <p className='poem-text'>{poem.text}</p>
@@ -79,7 +78,7 @@ const PoemsSearch = ({ createAlert }) => {
         ))
       ) : (
         <>
-          <img className='no-poems-wave-pic' src={wave}></img>
+          <img alt="placeholder" className='no-poems-wave-pic' src={wave}></img>
           <div className='no-poems-found'>
             <p>No poems here yet. Go ahead and write some!</p>
           </div>
