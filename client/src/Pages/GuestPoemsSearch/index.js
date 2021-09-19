@@ -57,7 +57,7 @@ const GuestPoemsSearch = ({ isAuthenticated }) => {
   }
 
   return (
-    <section>
+    <section style={{height: '100vh'}}>
       <Autocomplete
         id="combo-box-demo"
         className="autocompleteSearch"
@@ -82,37 +82,40 @@ const GuestPoemsSearch = ({ isAuthenticated }) => {
         renderInput={(params) => <TextField {...params} label="Search Poems" variant="outlined" />}
         clearOnEscape={false}
       />
-      {poemsToDisplay.length > 0 ? (
-        poemsToDisplay.slice().sort((a, b) => a.title.localeCompare(b.title))
-        .map((poem, index) => (
-          <div key={poem._id} className='poem-container'>
-            <img className='poem-picture' alt='MET' src={poem.picture} />
-            <div className='picture-with-text'>
-              <h1 className='poem-title'>{poem.title}</h1>
-              <p className='poem-text'>{poem.text}</p>
+      <div className="guest-poem-box">
+        {poemsToDisplay.length > 0 ? (
+          poemsToDisplay.slice().sort((a, b) => a.title.localeCompare(b.title))
+          .map((poem) => (
+            <div key={poem._id} className='poem-container'>
+              <img className='poem-picture' alt='MET' src={poem.picture} />
+              <div className='picture-with-text'>
+                <h1 className='poem-title'>{poem.title}</h1>
+                <p className='poem-text'>{poem.text}</p>
+              </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <>
-        {poems && poems.length === 0 && (
+          ))
+        ) : (
           <>
-            <img alt="placeholder wave when no poems found" className='no-poems-wave-pic' src={wave}></img>
-            <div className='no-poems-found'>
-              <p>No poems here yet. Go ahead and write some to share!</p>
-            </div>
+          {poems && poems.length === 0 && (
+            <>
+              <img alt="placeholder wave when no poems found" className='no-poems-wave-pic' src={wave}></img>
+              <div className='no-poems-found'>
+                <p>No poems here yet. Go ahead and write some to share!</p>
+              </div>
+            </>
+          )}
+          {poems && poems.length > 0 && poemsToDisplay.length === 0 && (
+            <>
+              <img alt="placeholder wave when no poems to display found" className='no-poems-wave-pic' src={wave}></img>
+              <div className='no-poems-found'>
+                <p>No poems matched that search</p>
+              </div>
+            </>
+          )} 
           </>
         )}
-        {poems && poems.length > 0 && poemsToDisplay.length === 0 && (
-           <>
-            <img alt="placeholder wave when no poems to display found" className='no-poems-wave-pic' src={wave}></img>
-            <div className='no-poems-found'>
-              <p>No poems matched that search</p>
-            </div>
-          </>
-        )} 
-        </>
-      )}
+      </div>
+
     </section>
   );
 };
