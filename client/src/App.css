@@ -120,6 +120,7 @@ section {
 .signup {
   background-image: url(./assets/whirlpool.jpeg);
   background-size: cover;
+  height: 80vh;
   padding: 250px;
 }
 
@@ -195,6 +196,7 @@ hr.divider:before {
 .login {
   background-image: url(./assets/whirlpool.jpeg);
   background-size: cover;
+  height: 80vh;
   padding: 250px;
 }
 
@@ -358,6 +360,7 @@ section#about {
   background-repeat: no-repeat;
   color: black;
   font-family: 'Lemonada', cursive;
+  height: 90vh;
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 300px;
