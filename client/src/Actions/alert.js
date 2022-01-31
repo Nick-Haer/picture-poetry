@@ -1,5 +1,5 @@
 import { CREATE_ALERT, DELETE_ALERT } from './types';
-import uuidv4 from 'uuid/v4';
+import uuidv4 from 'uuidv4';
 
 export const createAlert = (message, alertType) => dispatch => {
   const id = uuidv4();
