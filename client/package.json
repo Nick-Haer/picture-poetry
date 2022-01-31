@@ -42,7 +42,6 @@
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
-    "cypress": "^8.1.0",
-    "react-scripts": "^3.4.1"
+    "cypress": "^8.1.0"
   }
 }
