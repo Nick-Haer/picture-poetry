@@ -15,7 +15,7 @@ Art inspires art, in paint and in words. Picture Poetry is built at the intersec
 
 You can also browse the work of other picture poets, saving the works that you like best to your own collection. A fullstack MERN application with user auth, this web app was diifficult yet deeply rewarding to make.
 
-Picture Poetry is a long time passion project of mine, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
+Picture Poetry is a long time passion project of mine, which I have built and maintained over the last couple of years, and I intend to continue to add to it over time so that other poets can find a place to enjoy fine art, inspiration, and the colorful poems that result.
 
 Check out this project deployed to heroku [here](https://picturepoetry.herokuapp.com/)
 
@@ -41,4 +41,4 @@ This project was at its most difficult in configuring the authentication flow, e
 
 ## Final-Thoughts
 
-This project turned out different than originally visualized because each step brought a new batch of ideas I wanted to implement. Like a painting, a website always has room for more, and over the following months I hope to realize more and more of that vision.
+This project turned out different than originally visualized because each step brought a new batch of ideas I wanted to implement. Like a painting, a website always has room for more, and over the following months and years I hope to realize more and more of that vision.

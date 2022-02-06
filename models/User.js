@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+//Schema for user accounts
+//Anyone can view poems, but only users can save or post poetry
 const UserSchema = new Schema({
   email: {
     type: String,

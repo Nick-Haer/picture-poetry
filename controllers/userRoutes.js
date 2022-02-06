@@ -111,7 +111,6 @@ router.post(
 // Desc: DELETE Deletes user, given the correct json token
 // Address: /api/users
 // Access:   Private
-
 router.delete('/', auth, async (req, res) => {
   try {
     console.log('token is ' + req.user.id);

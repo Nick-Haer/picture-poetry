@@ -1,6 +1,7 @@
 const axios = require('axios');
 const randomWords = require('random-words');
 
+//to retrieve random paintings from the met
 const randomMetPainting = async () => {
   try {
     const word = randomWords();

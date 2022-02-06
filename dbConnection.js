@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//connect to the remote mongodb DB when deployed, and local in development
 async function dbConnect() {
   try {
     console.log('connecting...');

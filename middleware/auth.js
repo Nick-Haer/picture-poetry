@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+//verify user login
 const verifyToken = async (req, res, next) => {
   const token = req.header('x-auth-token');
 

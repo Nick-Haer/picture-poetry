@@ -63,8 +63,6 @@ router.route('/').get(async (req, res) => {
     if (!(poems.length > 0)) {
       throw 'No poems found!';
     }
-    // console.log(poems);
-
     res.status(200).json(poems);
   } catch (error) {
     console.error(error);
@@ -97,7 +95,6 @@ router.get('/check/myPoems/saved', auth, async (req, res) => {
       }
 
       return poem;
-      // console.log(poem);
     });
 
     console.log(saveCheckedPoems);
@@ -142,7 +139,6 @@ router.put('/save/:poemId', auth, async (req, res) => {
 // Desc: GET Get all saved poems
 // Address: /api/poems/getSavedPoems
 // Access:   Private
-
 router.get('/getSavedPoems', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('savedPoems');
@@ -160,7 +156,6 @@ router.get('/getSavedPoems', auth, async (req, res) => {
 // Desc: GET Get all poems a user has written
 // Address: /api/poems/getMyPoems
 // Access:   Private
-
 router.get('/getMyPoems', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('myPoems');
@@ -174,7 +169,6 @@ router.get('/getMyPoems', auth, async (req, res) => {
 // Desc: DELETE A user deletes one poem they have written by id
 // Address: /api/poems/getMyPoems
 // Access:   Private
-
 router.delete('/deleteOnePoem/:poemId', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('myPoems');
@@ -203,7 +197,6 @@ router.delete('/deleteOnePoem/:poemId', auth, async (req, res) => {
 // Desc: GET Remove one saved poem from the a users savedPoems list by id
 // Address: /api/poems//unSavePoem/:poemId
 // Access:   Private
-
 router.delete('/unSavePoem/:poemId', auth, async (req, res) => {
   try {
     console.log('index');

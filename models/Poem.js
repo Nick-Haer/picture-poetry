@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//The schema for entered poems
 const PoemSchema = new Schema({
   title: {
     type: String,
